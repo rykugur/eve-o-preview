@@ -8,3 +8,4 @@ src/.vs/
 *.DotSettings
 /.vs/eve-o-preview/v17
 /.vs/VSWorkspaceState.json
+/src/Eve-O-Preview/.vs/Eve-O-Preview.csproj.dtbcache.json

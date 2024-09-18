@@ -6,3 +6,5 @@ src/.vs/
 *.suo
 *.user
 *.DotSettings
+/.vs/eve-o-preview/v17
+/.vs/VSWorkspaceState.json

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 
@@ -14,6 +15,32 @@ namespace EveOPreview.Configuration.Implementation
 
 		public ThumbnailConfiguration()
 		{
+			this.ConfigVersion = 1;
+
+			this.CycleGroup1ForwardHotkeys = new List<string> { "F14", "Control+F14" };
+			this.CycleGroup1BackwardHotkeys = new List<string> { "F13", "Control+F13" };
+			this.CycleGroup1ClientsOrder = new Dictionary<string, int>
+			{
+				{ "EVE - Example DPS Toon 1", 1 },
+				{ "EVE - Example DPS Toon 2", 2 },
+				{ "EVE - Example DPS Toon 3", 3 }
+			};
+
+			this.CycleGroup2ForwardHotkeys = new List<string> { "F16", "Control+F16" };
+			this.CycleGroup2BackwardHotkeys = new List<string> { "F15", "Control+F15" };
+			this.CycleGroup2ClientsOrder = new Dictionary<string, int>
+			{
+				{ "EVE - Example Logi Toon 1", 1 },
+				{ "EVE - Example Scout Toon 2", 2 },
+				{ "EVE - Example Tackle Toon 3", 3 }
+			};
+
+			this.PerClientActiveClientHighlightColor = new Dictionary<string, Color>
+			{
+				{"EVE - Example Toon 1", Color.Red},
+				{"EVE - Example Toon 2", Color.Green}
+			};
+
 			this.PerClientLayout = new Dictionary<string, Dictionary<string, Point>>();
 			this.FlatLayout = new Dictionary<string, Point>();
 			this.ClientLayout = new Dictionary<string, ClientLayout>();
@@ -53,7 +80,34 @@ namespace EveOPreview.Configuration.Implementation
 			this.EnableActiveClientHighlight = false;
 			this.ActiveClientHighlightColor = Color.GreenYellow;
 			this.ActiveClientHighlightThickness = 3;
+
+			this.LoginThumbnailLocation = new Point(5, 5);
 		}
+
+
+		[JsonProperty("ConfigVersion")]
+		public int ConfigVersion { get; set; }
+
+		[JsonProperty("CycleGroup1ForwardHotkeys")]
+		public List<string> CycleGroup1ForwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup1BackwardHotkeys")]
+		public List<string> CycleGroup1BackwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup1ClientsOrder")]
+		public Dictionary<string, int> CycleGroup1ClientsOrder { get; set; }
+
+		[JsonProperty("CycleGroup2ForwardHotkeys")]
+		public List<string> CycleGroup2ForwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup2BackwardHotkeys")]
+		public List<string> CycleGroup2BackwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup2ClientsOrder")]
+		public Dictionary<string, int> CycleGroup2ClientsOrder { get; set; }
+
+		[JsonProperty("PerClientActiveClientHighlightColor")]
+		public Dictionary<string, Color> PerClientActiveClientHighlightColor { get; set; }
 
 		public bool MinimizeToTray { get; set; }
 		public int ThumbnailRefreshPeriod { get; set; }
@@ -119,6 +173,9 @@ namespace EveOPreview.Configuration.Implementation
 
 		public int ActiveClientHighlightThickness { get; set; }
 
+		[JsonProperty("LoginThumbnailLocation")]
+		public Point LoginThumbnailLocation { get; set; }
+
 		[JsonProperty]
 		private Dictionary<string, Dictionary<string, Point>> PerClientLayout { get; set; }
 		[JsonProperty]
@@ -131,14 +188,6 @@ namespace EveOPreview.Configuration.Implementation
 		private Dictionary<string, bool> DisableThumbnail { get; set; }
 		[JsonProperty]
 		private List<string> PriorityClients { get; set; }
-
-		public Point GetDefaultThumbnailLocation()
-		{
-			// Returns default thumbnail location
-			// This location can be used for f.e. EVE clients sitting on the login screen
-			// Can be made configurable later (that's why it was moved out here)
-			return new Point(5, 5);
-		}
 
 		public Point GetThumbnailLocation(string currentClient, string activeClient, Point defaultLocation)
 		{
@@ -218,6 +267,12 @@ namespace EveOPreview.Configuration.Implementation
 		public void SetClientHotkey(string currentClient, Keys hotkey)
 		{
 			this.ClientHotkey[currentClient] = (new KeysConverter()).ConvertToInvariantString(hotkey);
+		}
+
+		public Keys StringToKey(string hotkey)
+		{
+			object rawValue = (new KeysConverter()).ConvertFromInvariantString(hotkey);
+			return rawValue != null ? (Keys)rawValue : Keys.None;
 		}
 
 		public bool IsPriorityClient(string currentClient)

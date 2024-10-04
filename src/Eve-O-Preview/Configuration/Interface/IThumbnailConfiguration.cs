@@ -1,10 +1,21 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace EveOPreview.Configuration
 {
 	public interface IThumbnailConfiguration
 	{
+		List<string> CycleGroup1ForwardHotkeys { get; set; }
+		List<string> CycleGroup1BackwardHotkeys { get; set; }
+		Dictionary<string, int> CycleGroup1ClientsOrder { get; set; }
+
+		List<string> CycleGroup2ForwardHotkeys { get; set; }
+		List<string> CycleGroup2BackwardHotkeys { get; set; }
+		Dictionary<string, int> CycleGroup2ClientsOrder { get; set; }
+
+		Dictionary<string, Color> PerClientActiveClientHighlightColor { get; set; }
+
 		bool MinimizeToTray { get; set; }
 		int ThumbnailRefreshPeriod { get; set; }
 
@@ -38,7 +49,8 @@ namespace EveOPreview.Configuration
 		Color ActiveClientHighlightColor { get; set; }
 		int ActiveClientHighlightThickness { get; set; }
 
-		Point GetDefaultThumbnailLocation();
+		Point LoginThumbnailLocation { get; set; }
+
 		Point GetThumbnailLocation(string currentClient, string activeClient, Point defaultLocation);
 		void SetThumbnailLocation(string currentClient, string activeClient, Point location);
 
@@ -47,6 +59,7 @@ namespace EveOPreview.Configuration
 
 		Keys GetClientHotkey(string currentClient);
 		void SetClientHotkey(string currentClient, Keys hotkey);
+		Keys StringToKey(string hotkey);
 
 		bool IsPriorityClient(string currentClient);
 

@@ -102,7 +102,7 @@ namespace EveOPreview.Services
 		{
 			this.GetActiveClient()?.ClearBorder();
 
-			this._windowManager.ActivateWindow(newClient.Key);
+			this._windowManager.ActivateWindow(newClient.Key, newClient.Value.Title);
 			this.SwitchActiveClient(newClient.Key, newClient.Value.Title);
 
 			newClient.Value.SetHighlight();
@@ -534,7 +534,7 @@ namespace EveOPreview.Services
 
 			Task.Run(() =>
 				{
-					this._windowManager.ActivateWindow(view.Id);
+					this._windowManager.ActivateWindow(view.Id, view.Title);
 				})
 				.ContinueWith((task) =>
 				{
@@ -549,7 +549,7 @@ namespace EveOPreview.Services
 		{
 			if (switchOut)
 			{
-				this._windowManager.ActivateWindow(this._externalApplication);
+				this._windowManager.ActivateWindow(this._externalApplication, null);
 			}
 			else
 			{

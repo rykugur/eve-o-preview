@@ -51,7 +51,7 @@ namespace EveOPreview.Configuration.Implementation
 			this.MinimizeToTray = false;
 			this.ThumbnailRefreshPeriod = 500;
 
-			this.EnableCompatibilityMode = false;
+			this.EnableWineCompatibilityMode = false;
 
 			this.ThumbnailOpacity = 0.5;
 
@@ -112,8 +112,8 @@ namespace EveOPreview.Configuration.Implementation
 		public bool MinimizeToTray { get; set; }
 		public int ThumbnailRefreshPeriod { get; set; }
 
-		[JsonProperty("CompatibilityMode")]
-		public bool EnableCompatibilityMode { get; set; }
+		[JsonProperty("WineCompatibilityMode")]
+		public bool EnableWineCompatibilityMode { get; set; }
 
 		[JsonProperty("ThumbnailsOpacity")]
 		public double ThumbnailOpacity { get; set; }

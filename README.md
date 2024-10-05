@@ -15,7 +15,7 @@ The program does NOT (and will NOT ever) do the following things:
 
 **Under any conditions you should NOT use EVE-O Preview for any actions that break EULA or ToS of EVE Online.**
 
-If you have find out that some of the features or their combination of EVE-O Preview might cause actions that can be considered as breaking EULA or ToS of EVE Online you should consider them as a bug and immediately notify the Developer ( Aura Asuna ) via in-game mail.
+If you have find out that some of the features or their combination of EVE-O Preview might cause actions that can be considered as breaking EULA or ToS of EVE Online you should consider them as a bug and immediately notify the Developer ( Devilen ) via in-game mail or contact via Discord Server: 
 
 <div style="page-break-after: always;"></div>
 
@@ -33,7 +33,7 @@ Video Guides:
 
 ## System Requirements
 
-* Windows 7, Windows 8/8.1, Windows 10
+* Windows 7, Windows 8/8.1, Windows 10, Windows 11, Linux Wine
 * Microsoft .NET Framework 4.6.2+
 * EVE clients Display Mode should be set to **Fixed Window** or **Window Mode**. **Fullscreen** mode is not supported.
 
@@ -250,7 +250,9 @@ This setting allows to enable an alternate thumbnail render. This render doesn't
 
 ### Maintained by
 
-* Aura Asuna
+* Devilen
+  
+* Dal Shooth
 
 
 ### Created by
@@ -258,8 +260,9 @@ This setting allows to enable an alternate thumbnail render. This render doesn't
 * StinkRay
 
 
-
 ### Previous maintainers
+
+* Aura Asuna
 
 * Phrynohyas Tig-Rah
  

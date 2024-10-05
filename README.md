@@ -31,6 +31,10 @@ Video Guides:
 * [Eve online , How To : EVE-O Preview (multiboxing; legal)](https://youtu.be/2r0NMKbogXU)
 
 
+## How To Compile your self
+
+Will update once moved to newer .net version
+
 ## System Requirements
 
 * Windows 7, Windows 8/8.1, Windows 10
@@ -204,7 +208,7 @@ This may provide useful if you want to have one HotKey to cycle through a group 
 Alternatively you may not want to use any of these HotKeys. Please note that deleting the values in their entirety will simply result in them being automatically re-generated.
 Should you wish to remove these HotKeys completely, Simply set the values to empty, such as the example below:
 
-      "CycleGroup1ForwardHotkeys": [],
+    "CycleGroup1ForwardHotkeys": [],
 	  "CycleGroup1BackwardHotkeys": [],
 	  "CycleGroup1ClientsOrder": {},
 	  "CycleGroup2ForwardHotkeys": [],
@@ -250,7 +254,8 @@ This setting allows to enable an alternate thumbnail render. This render doesn't
 
 ### Maintained by
 
-* Aura Asuna
+* Devilen
+* Dal Shooth
 
 
 ### Created by
@@ -258,8 +263,9 @@ This setting allows to enable an alternate thumbnail render. This render doesn't
 * StinkRay
 
 
-
 ### Previous maintainers
+
+* Aura Asuna
 
 * Phrynohyas Tig-Rah
  

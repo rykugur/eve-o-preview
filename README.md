@@ -30,6 +30,19 @@ Video Guides:
 
 * [Eve online , How To : EVE-O Preview (multiboxing; legal)](https://youtu.be/2r0NMKbogXU)
 
+## Development Details
+Use this info to deploy this git in your own dev environment to play with the code and build your own EXE.
+
+1. Install VS Studio (not code)
+* DEPENDENCIES
+  * Core
+  * .NET desktop development workload w/ 4.8 framework
+2. Clone the Git - https://github.com/Proopai/eve-o-preview
+3. Open the Project/Solution
+4. You can now edit code
+5. To build, Right click the `Eve-O-Preview` project in the `Solutions Explorer` and select `Build`
+
+If you did everything correct, VS will now build the project in seconds and tell you where it placed the EXE.
 
 ## System Requirements
 
@@ -289,5 +302,5 @@ https://bitbucket.org/ulph/eve-o-preview-git
 
 ## CCP Copyright Notice
 
-EVE Online, the EVE logo, EVE and all associated logos and designs are the intellectual property of CCP hf. All artwork, screenshots, characters, vehicles, storylines, world facts or other recognizable features of the intellectual property relating to these trademarks are likewise the intellectual property of CCP hf. EVE Online and the EVE logo are the registered trademarks of CCP hf. All rights are reserved worldwide. All other trademarks are the property of their respective owners. CCP hf. has granted permission to pyfa to use EVE Online and all associated logos and designs for promotional and information purposes on its website but does not endorse, and is not in any way affiliated with, pyfa. CCP is in no way responsible for the content on or functioning of this program, nor can it be liable for any damage arising from the use of this program. 
+EVE Online, the EVE logo, EVE and all associated logos and designs are the intellectual property of CCP hf. All artwork, screenshots, characters, vehicles, storylines, world facts or other recognizable features of the intellectual property relating to these trademarks are likewise the intellectual property of CCP hf. EVE Online and the EVE logo are the registered trademarks of CCP hf. All rights are reserved worldwide. All other trademarks are the property of their respective owners. CCP hf. has granted permission to Eve-O-Preview to use EVE Online and all associated logos and designs for promotional and information purposes on its website but does not endorse, and is not in any way affiliated with, Eve-O-Preview. CCP is in no way responsible for the content on or functioning of this program, nor can it be liable for any damage arising from the use of this program. 
 

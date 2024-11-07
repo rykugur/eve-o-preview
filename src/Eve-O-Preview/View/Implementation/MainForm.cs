@@ -75,6 +75,12 @@ namespace EveOPreview.View
 			set => this.MinimizeInactiveClientsCheckBox.Checked = value;
 		}
 
+		public bool MinimizeInactiveClientsAnimation
+		{
+			get => this.MinimizeInactiveClientsAnimationCheckBox.Checked;
+			set => this.MinimizeInactiveClientsAnimationCheckBox = value;
+		}
+
 		public bool ShowThumbnailsAlwaysOnTop
 		{
 			get => this.ShowThumbnailsAlwaysOnTopCheckBox.Checked;

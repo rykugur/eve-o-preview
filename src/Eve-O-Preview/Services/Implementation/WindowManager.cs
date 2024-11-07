@@ -27,7 +27,7 @@ namespace EveOPreview.Services.Implementation
 			return User32NativeMethods.GetForegroundWindow();
 		}
 
-		public void ActivateWindow(IntPtr handle)
+		public void ActivateWindow(IntPtr handle, bool enableAnimation)
 		{
 			User32NativeMethods.SetForegroundWindow(handle);
 			User32NativeMethods.SetFocus(handle);
@@ -38,6 +38,25 @@ namespace EveOPreview.Services.Implementation
 			{
 				User32NativeMethods.ShowWindowAsync(handle, InteropConstants.SW_RESTORE);
 			}
+			else
+			{
+				ANIMATIONINFO param = new ANIMATIONINFO();
+				param.cbSize = (System.UInt32)Marshal.SizeOf(typeof(ANIMATIONINFO));
+
+				// Store the current Animation Setting
+				var ret = User32NativeMethods.SystemParametersInfo(User32NativeMethods.SPI_GETANIMATION, (System.Int32)Marshal.SizeOf(typeof(ANIMATIONINFO)), ref param, 0);
+				int currentAnimationSetting = param.iMinAnimate;
+
+				// Turn off Animation
+				param.iMinAnimate = 0;
+				ret = User32NativeMethods.SystemParametersInfo(User32NativeMethods.SPI_SETANIMATION, (System.Int32)Marshal.SizeOf(typeof(ANIMATIONINFO)), ref param, 0);
+
+				User32NativeMethods.ShowWindowAsync(handle, InteropConstants.SW_RESTORE);
+
+				// Restore current Animation Settings
+				param.iMinAnimate = currentAnimationSetting;
+				ret = User32NativeMethods.SystemParametersInfo(User32NativeMethods.SPI_SETANIMATION, (System.Int32)Marshal.SizeOf(typeof(ANIMATIONINFO)), ref param, 0);
+            }
 		}
 
 		public void MinimizeWindow(IntPtr handle, bool enableAnimation)
@@ -48,12 +67,23 @@ namespace EveOPreview.Services.Implementation
 			}
 			else
 			{
-				WINDOWPLACEMENT param = new WINDOWPLACEMENT();
-				param.length = Marshal.SizeOf(typeof(WINDOWPLACEMENT));
-				User32NativeMethods.GetWindowPlacement(handle, ref param);
-				param.showCmd = WINDOWPLACEMENT.SW_MINIMIZE;
-				User32NativeMethods.SetWindowPlacement(handle, ref param);
-			}
+				ANIMATIONINFO param = new ANIMATIONINFO();
+				param.cbSize = (System.UInt32)Marshal.SizeOf(typeof(ANIMATIONINFO));
+
+                // Store Current Animation Setting
+                var ret = User32NativeMethods.SystemParametersInfo(User32NativeMethods.SPI_GETANIMATION, (System.Int32)Marshal.SizeOf(typeof(ANIMATIONINFO)), ref param, 0);
+                int currentAnimationSetting = param.iMinAnimate;
+
+                // Turn off Animation
+                param.iMinAnimate = 0;
+                ret = User32NativeMethods.SystemParametersInfo(User32NativeMethods.SPI_SETANIMATION, (System.Int32)Marshal.SizeOf(typeof(ANIMATIONINFO)), ref param, 0);
+
+                User32NativeMethods.ShowWindowAsync(handle, InteropConstants.WM_SYSCOMMAND, InteropConstants.SC_MINIMIZE, 0);
+
+                // Restore current Animation Settings
+                param.iMinAnimate = currentAnimationSetting;
+                ret = User32NativeMethods.SystemParametersInfo(User32NativeMethods.SPI_SETANIMATION, (System.Int32)Marshal.SizeOf(typeof(ANIMATIONINFO)), ref param, 0);
+            }
 		}
 
 		public void MoveWindow(IntPtr handle, int left, int top, int width, int height)
@@ -61,10 +91,22 @@ namespace EveOPreview.Services.Implementation
 			User32NativeMethods.MoveWindow(handle, left, top, width, height, true);
 		}
 
-		public void MaximizeWindow(IntPtr handle)
+		public void MaximizeWindow(IntPtr handle, bool enableAnimation)
 		{
-			User32NativeMethods.ShowWindowAsync(handle, InteropConstants.SW_SHOWMAXIMIZED);
-		}
+			if (enableAnimation)
+			{
+                User32NativeMethods.ShowWindowAsync(handle, InteropConstants.SW_SHOWMAXIMIZED);
+            }
+			else
+			{
+                WINDOWPLACEMENT param = new WINDOWPLACEMENT();
+                param.length = Marshal.SizeOf(typeof(WINDOWPLACEMENT));
+                User32NativeMethods.GetWindowPlacement(handle, ref param);
+                param.showCmd = WINDOWPLACEMENT.SW_MINIMIZE;
+                User32NativeMethods.SetWindowPlacement(handle, ref param);
+            }
+
+        }
 
 		public (int Left, int Top, int Right, int Bottom) GetWindowPosition(IntPtr handle)
 		{

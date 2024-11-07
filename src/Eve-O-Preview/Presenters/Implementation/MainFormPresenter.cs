@@ -120,6 +120,7 @@ namespace EveOPreview.Presenters
 
 			this.View.ShowThumbnailOverlays = this._configuration.ShowThumbnailOverlays;
 			this.View.ShowThumbnailFrames = this._configuration.ShowThumbnailFrames;
+			this.View.LockThumbnailLocation = this._configuration.LockThumbnailLocation;
 			this.View.EnableActiveClientHighlight = this._configuration.EnableActiveClientHighlight;
 			this.View.ActiveClientHighlightColor = this._configuration.ActiveClientHighlightColor;
 		}
@@ -150,7 +151,9 @@ namespace EveOPreview.Presenters
 				await this._mediator.Publish(new ThumbnailFrameSettingsUpdated());
 			}
 
-			this._configuration.EnableActiveClientHighlight = this.View.EnableActiveClientHighlight;
+            this._configuration.LockThumbnailLocation = this.View.LockThumbnailLocation;
+
+            this._configuration.EnableActiveClientHighlight = this.View.EnableActiveClientHighlight;
 			this._configuration.ActiveClientHighlightColor = this.View.ActiveClientHighlightColor;
 
 			this._configurationStorage.Save();

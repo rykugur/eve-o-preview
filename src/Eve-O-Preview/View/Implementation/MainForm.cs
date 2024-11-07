@@ -161,6 +161,12 @@ namespace EveOPreview.View
 			set => this.ShowThumbnailFramesCheckBox.Checked = value;
 		}
 
+		public bool LockThumbnailFrames
+		{
+			get => this.LockThumbnailFramesCheckbox.Checked;
+			set => this.LockThumbnailFramesCheckbox.Checked = value;
+		}
+
 		public bool EnableActiveClientHighlight
 		{
 			get => this.EnableActiveClientHighlightCheckBox.Checked;

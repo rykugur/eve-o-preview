@@ -47,7 +47,7 @@ If you did everything correct, VS will now build the project in seconds and tell
 ## System Requirements
 
 * Windows 7, Windows 8/8.1, Windows 10, Windows 11, Linux Wine
-* Microsoft .NET Framework 4.6.2+
+* Microsoft .NET Framework 4.8+
 * EVE clients Display Mode should be set to **Fixed Window** or **Window Mode**. **Fullscreen** mode is not supported.
 
 <div style="page-break-after: always;"></div>
@@ -266,6 +266,8 @@ This setting allows to enable an alternate thumbnail render. This render doesn't
 * Devilen
   
 * Dal Shooth
+
+* Izakbar
 
 
 ### Created by

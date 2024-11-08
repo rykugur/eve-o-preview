@@ -32,6 +32,9 @@ namespace EveOPreview.View
 		bool ShowThumbnailFrames { get; set; }
 
 		bool LockThumbnailLocation { get; set; }
+		bool ThumbnailSnapToGrid { get; set; }
+		bool ThumbnailSnapToGridSizeX { get; set; }
+		bool ThumbnailSnapToGridSizeY {  get; set; }
 
 		bool EnableActiveClientHighlight { get; set; }
 		Color ActiveClientHighlightColor { get; set; }

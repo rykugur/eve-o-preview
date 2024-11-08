@@ -36,26 +36,29 @@ namespace EveOPreview.Services.Implementation
 
 			if ((style & InteropConstants.WS_MINIMIZE) == InteropConstants.WS_MINIMIZE)
 			{
-				User32NativeMethods.ShowWindowAsync(handle, InteropConstants.SW_RESTORE);
-			}
-			else
-			{
-				ANIMATIONINFO param = new ANIMATIONINFO();
-				param.cbSize = (System.UInt32)Marshal.SizeOf(typeof(ANIMATIONINFO));
+				if (enableAnimation)
+				{
+                    User32NativeMethods.ShowWindowAsync(handle, InteropConstants.SW_RESTORE);
+                }
+                else
+                {
+                    ANIMATIONINFO param = new ANIMATIONINFO();
+                    param.cbSize = (System.UInt32)Marshal.SizeOf(typeof(ANIMATIONINFO));
 
-				// Store the current Animation Setting
-				var ret = User32NativeMethods.SystemParametersInfo(User32NativeMethods.SPI_GETANIMATION, (System.Int32)Marshal.SizeOf(typeof(ANIMATIONINFO)), ref param, 0);
-				int currentAnimationSetting = param.iMinAnimate;
+                    // Store the current Animation Setting
+                    var ret = User32NativeMethods.SystemParametersInfo(User32NativeMethods.SPI_GETANIMATION, (System.Int32)Marshal.SizeOf(typeof(ANIMATIONINFO)), ref param, 0);
+                    int currentAnimationSetting = param.iMinAnimate;
 
-				// Turn off Animation
-				param.iMinAnimate = 0;
-				ret = User32NativeMethods.SystemParametersInfo(User32NativeMethods.SPI_SETANIMATION, (System.Int32)Marshal.SizeOf(typeof(ANIMATIONINFO)), ref param, 0);
+                    // Turn off Animation
+                    param.iMinAnimate = 0;
+                    ret = User32NativeMethods.SystemParametersInfo(User32NativeMethods.SPI_SETANIMATION, (System.Int32)Marshal.SizeOf(typeof(ANIMATIONINFO)), ref param, 0);
 
-				User32NativeMethods.ShowWindowAsync(handle, InteropConstants.SW_RESTORE);
+                    User32NativeMethods.ShowWindowAsync(handle, InteropConstants.SW_RESTORE);
 
-				// Restore current Animation Settings
-				param.iMinAnimate = currentAnimationSetting;
-				ret = User32NativeMethods.SystemParametersInfo(User32NativeMethods.SPI_SETANIMATION, (System.Int32)Marshal.SizeOf(typeof(ANIMATIONINFO)), ref param, 0);
+                    // Restore current Animation Settings
+                    param.iMinAnimate = currentAnimationSetting;
+                    ret = User32NativeMethods.SystemParametersInfo(User32NativeMethods.SPI_SETANIMATION, (System.Int32)Marshal.SizeOf(typeof(ANIMATIONINFO)), ref param, 0);
+                }
             }
 		}
 
@@ -78,7 +81,7 @@ namespace EveOPreview.Services.Implementation
                 param.iMinAnimate = 0;
                 ret = User32NativeMethods.SystemParametersInfo(User32NativeMethods.SPI_SETANIMATION, (System.Int32)Marshal.SizeOf(typeof(ANIMATIONINFO)), ref param, 0);
 
-                User32NativeMethods.ShowWindowAsync(handle, InteropConstants.WM_SYSCOMMAND, InteropConstants.SC_MINIMIZE, 0);
+                User32NativeMethods.SendMessage(handle, InteropConstants.WM_SYSCOMMAND, InteropConstants.SC_MINIMIZE, 0);
 
                 // Restore current Animation Settings
                 param.iMinAnimate = currentAnimationSetting;

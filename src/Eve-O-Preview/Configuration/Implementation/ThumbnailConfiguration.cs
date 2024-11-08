@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 
@@ -79,6 +80,10 @@ namespace EveOPreview.Configuration.Implementation
 			this.ShowThumbnailOverlays = true;
 			this.ShowThumbnailFrames = false;
 			this.LockThumbnailLocation = false;
+
+			this.ThumbnailSnapToGrid = true;
+			this.ThumbnailSnapToGridX = 100;
+			this.ThumbnailSnapToGridY = 50;
 
 			this.EnableActiveClientHighlight = false;
 			this.ActiveClientHighlightColor = Color.GreenYellow;
@@ -171,6 +176,10 @@ namespace EveOPreview.Configuration.Implementation
 		public bool ShowThumbnailOverlays { get; set; }
 		public bool ShowThumbnailFrames { get; set; }
 		public bool LockThumbnailLocation { get; set; }
+		public bool ThumbnailSnapToGrid { get; set; }
+		public int ThumbnailSnapToGridSizeX {  get; set; }
+		public int ThumbnailSnapToGridSizeY { get; set; }
+
 		public bool EnableActiveClientHighlight { get; set; }
 
 		public Color ActiveClientHighlightColor { get; set; }

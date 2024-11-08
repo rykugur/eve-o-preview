@@ -78,7 +78,7 @@ namespace EveOPreview.View
 		public bool MinimizeInactiveClientsAnimation
 		{
 			get => this.MinimizeInactiveClientsAnimationCheckBox.Checked;
-			set => this.MinimizeInactiveClientsAnimationCheckBox = value;
+			set => this.MinimizeInactiveClientsAnimationCheckBox.Checked = value;
 		}
 
 		public bool ShowThumbnailsAlwaysOnTop
@@ -167,13 +167,30 @@ namespace EveOPreview.View
 			set => this.ShowThumbnailFramesCheckBox.Checked = value;
 		}
 
-		public bool LockThumbnailFrames
+		public bool LockThumbnailLocation
 		{
 			get => this.LockThumbnailFramesCheckbox.Checked;
 			set => this.LockThumbnailFramesCheckbox.Checked = value;
 		}
 
-		public bool EnableActiveClientHighlight
+		public bool ThumbnailSnapToGrid
+		{
+			get => this.ThumbnailSnapToGridCheckBox.Checked;
+			set => this.ThumbnailSnapToGridCheckBox.Checked = value;
+		}
+
+		public int ThumbnailSnapToGridSizeX
+		{
+			get => (int)ThumbnailSnapToGridSizeXNumericEdit.Value;
+			set => ThumbnailSnapToGridSizeXNumericEdit.Value = value;
+		}
+        public int ThumbnailSnapToGridSizeY
+        {
+            get => (int)ThumbnailSnapToGridSizeYNumericEdit.Value;
+            set => ThumbnailSnapToGridSizeYNumericEdit.Value = value;
+        }
+
+        public bool EnableActiveClientHighlight
 		{
 			get => this.EnableActiveClientHighlightCheckBox.Checked;
 			set => this.EnableActiveClientHighlightCheckBox.Checked = value;

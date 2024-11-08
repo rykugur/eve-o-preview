@@ -3,6 +3,7 @@ obj/
 publish/
 tools/
 src/.vs/
+src/*/.vs/
 *.suo
 *.user
 *.DotSettings

@@ -59,6 +59,7 @@ namespace EveOPreview.View
             System.Windows.Forms.Label DescriptionLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             System.Windows.Forms.Label NameLabel;
+            this.MinimizeInactiveClientsAnimationCheckBox = new System.Windows.Forms.CheckBox();
             this.MinimizeInactiveClientsCheckBox = new System.Windows.Forms.CheckBox();
             this.EnableClientLayoutTrackingCheckBox = new System.Windows.Forms.CheckBox();
             this.HideActiveClientThumbnailCheckBox = new System.Windows.Forms.CheckBox();
@@ -66,11 +67,10 @@ namespace EveOPreview.View
             this.HideThumbnailsOnLostFocusCheckBox = new System.Windows.Forms.CheckBox();
             this.EnablePerClientThumbnailsLayoutsCheckBox = new System.Windows.Forms.CheckBox();
             this.MinimizeToTrayCheckBox = new System.Windows.Forms.CheckBox();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.ThumbnailSnapToGridSizeYNumericEdit = new System.Windows.Forms.NumericUpDown();
             this.SnapYLabel = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.ThumbnailSnapToGridSizeXNumericEdit = new System.Windows.Forms.NumericUpDown();
             this.SnapXLabel = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.LockThumbnailFramesCheckbox = new System.Windows.Forms.CheckBox();
             this.ThumbnailsWidthNumericEdit = new System.Windows.Forms.NumericUpDown();
             this.ThumbnailsHeightNumericEdit = new System.Windows.Forms.NumericUpDown();
@@ -98,7 +98,7 @@ namespace EveOPreview.View
             this.DocumentationLink = new System.Windows.Forms.LinkLabel();
             this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.TrayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.MinimizeInactiveClientsAnimationCheckBox = new System.Windows.Forms.CheckBox();
+            this.ThumbnailSnapToGridCheckBox = new System.Windows.Forms.CheckBox();
             RestoreWindowMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             TitleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -130,8 +130,8 @@ namespace EveOPreview.View
             GeneralSettingsPanel.SuspendLayout();
             ThumbnailTabPage.SuspendLayout();
             ThumbnailSettingsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ThumbnailSnapToGridSizeYNumericEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ThumbnailSnapToGridSizeXNumericEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThumbnailsWidthNumericEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThumbnailsHeightNumericEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThumbnailOpacityTrackBar)).BeginInit();
@@ -222,6 +222,16 @@ namespace EveOPreview.View
             GeneralSettingsPanel.Name = "GeneralSettingsPanel";
             GeneralSettingsPanel.Size = new System.Drawing.Size(256, 204);
             GeneralSettingsPanel.TabIndex = 18;
+            // 
+            // MinimizeInactiveClientsAnimationCheckBox
+            // 
+            this.MinimizeInactiveClientsAnimationCheckBox.AutoSize = true;
+            this.MinimizeInactiveClientsAnimationCheckBox.Location = new System.Drawing.Point(8, 101);
+            this.MinimizeInactiveClientsAnimationCheckBox.Name = "MinimizeInactiveClientsAnimationCheckBox";
+            this.MinimizeInactiveClientsAnimationCheckBox.Size = new System.Drawing.Size(190, 17);
+            this.MinimizeInactiveClientsAnimationCheckBox.TabIndex = 25;
+            this.MinimizeInactiveClientsAnimationCheckBox.Text = "Minimize Inactive Clients Animation";
+            this.MinimizeInactiveClientsAnimationCheckBox.UseVisualStyleBackColor = true;
             // 
             // MinimizeInactiveClientsCheckBox
             // 
@@ -323,11 +333,11 @@ namespace EveOPreview.View
             // ThumbnailSettingsPanel
             // 
             ThumbnailSettingsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            ThumbnailSettingsPanel.Controls.Add(this.numericUpDown2);
+            ThumbnailSettingsPanel.Controls.Add(this.ThumbnailSnapToGridCheckBox);
+            ThumbnailSettingsPanel.Controls.Add(this.ThumbnailSnapToGridSizeYNumericEdit);
             ThumbnailSettingsPanel.Controls.Add(this.SnapYLabel);
-            ThumbnailSettingsPanel.Controls.Add(this.numericUpDown1);
+            ThumbnailSettingsPanel.Controls.Add(this.ThumbnailSnapToGridSizeXNumericEdit);
             ThumbnailSettingsPanel.Controls.Add(this.SnapXLabel);
-            ThumbnailSettingsPanel.Controls.Add(this.checkBox1);
             ThumbnailSettingsPanel.Controls.Add(this.LockThumbnailFramesCheckbox);
             ThumbnailSettingsPanel.Controls.Add(HeigthLabel);
             ThumbnailSettingsPanel.Controls.Add(WidthLabel);
@@ -341,26 +351,26 @@ namespace EveOPreview.View
             ThumbnailSettingsPanel.Size = new System.Drawing.Size(256, 204);
             ThumbnailSettingsPanel.TabIndex = 19;
             // 
-            // numericUpDown2
+            // ThumbnailSnapToGridSizeYNumericEdit
             // 
-            this.numericUpDown2.BackColor = System.Drawing.SystemColors.Window;
-            this.numericUpDown2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numericUpDown2.CausesValidation = false;
-            this.numericUpDown2.Increment = new decimal(new int[] {
+            this.ThumbnailSnapToGridSizeYNumericEdit.BackColor = System.Drawing.SystemColors.Window;
+            this.ThumbnailSnapToGridSizeYNumericEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ThumbnailSnapToGridSizeYNumericEdit.CausesValidation = false;
+            this.ThumbnailSnapToGridSizeYNumericEdit.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown2.Location = new System.Drawing.Point(130, 122);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.ThumbnailSnapToGridSizeYNumericEdit.Location = new System.Drawing.Point(130, 122);
+            this.ThumbnailSnapToGridSizeYNumericEdit.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(48, 20);
-            this.numericUpDown2.TabIndex = 31;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.ThumbnailSnapToGridSizeYNumericEdit.Name = "ThumbnailSnapToGridSizeYNumericEdit";
+            this.ThumbnailSnapToGridSizeYNumericEdit.Size = new System.Drawing.Size(48, 20);
+            this.ThumbnailSnapToGridSizeYNumericEdit.TabIndex = 31;
+            this.ThumbnailSnapToGridSizeYNumericEdit.Value = new decimal(new int[] {
             100,
             0,
             0,
@@ -375,26 +385,26 @@ namespace EveOPreview.View
             this.SnapYLabel.TabIndex = 30;
             this.SnapYLabel.Text = "Y";
             // 
-            // numericUpDown1
+            // ThumbnailSnapToGridSizeXNumericEdit
             // 
-            this.numericUpDown1.BackColor = System.Drawing.SystemColors.Window;
-            this.numericUpDown1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numericUpDown1.CausesValidation = false;
-            this.numericUpDown1.Increment = new decimal(new int[] {
+            this.ThumbnailSnapToGridSizeXNumericEdit.BackColor = System.Drawing.SystemColors.Window;
+            this.ThumbnailSnapToGridSizeXNumericEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ThumbnailSnapToGridSizeXNumericEdit.CausesValidation = false;
+            this.ThumbnailSnapToGridSizeXNumericEdit.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown1.Location = new System.Drawing.Point(56, 122);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.ThumbnailSnapToGridSizeXNumericEdit.Location = new System.Drawing.Point(56, 122);
+            this.ThumbnailSnapToGridSizeXNumericEdit.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(48, 20);
-            this.numericUpDown1.TabIndex = 29;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.ThumbnailSnapToGridSizeXNumericEdit.Name = "ThumbnailSnapToGridSizeXNumericEdit";
+            this.ThumbnailSnapToGridSizeXNumericEdit.Size = new System.Drawing.Size(48, 20);
+            this.ThumbnailSnapToGridSizeXNumericEdit.TabIndex = 29;
+            this.ThumbnailSnapToGridSizeXNumericEdit.Value = new decimal(new int[] {
             100,
             0,
             0,
@@ -408,16 +418,6 @@ namespace EveOPreview.View
             this.SnapXLabel.Size = new System.Drawing.Size(42, 13);
             this.SnapXLabel.TabIndex = 28;
             this.SnapXLabel.Text = "Snap X";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(11, 104);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(137, 17);
-            this.checkBox1.TabIndex = 27;
-            this.checkBox1.Text = "Thumbnail Snap to Grid";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // LockThumbnailFramesCheckbox
             // 
@@ -955,15 +955,15 @@ namespace EveOPreview.View
             this.TrayMenu.Name = "contextMenuStrip1";
             this.TrayMenu.Size = new System.Drawing.Size(152, 76);
             // 
-            // MinimizeInactiveClientsAnimationCheckBox
+            // ThumbnailSnapToGridCheckBox
             // 
-            this.MinimizeInactiveClientsAnimationCheckBox.AutoSize = true;
-            this.MinimizeInactiveClientsAnimationCheckBox.Location = new System.Drawing.Point(8, 101);
-            this.MinimizeInactiveClientsAnimationCheckBox.Name = "MinimizeInactiveClientsAnimationCheckBox";
-            this.MinimizeInactiveClientsAnimationCheckBox.Size = new System.Drawing.Size(190, 17);
-            this.MinimizeInactiveClientsAnimationCheckBox.TabIndex = 25;
-            this.MinimizeInactiveClientsAnimationCheckBox.Text = "Minimize Inactive Clients Animation";
-            this.MinimizeInactiveClientsAnimationCheckBox.UseVisualStyleBackColor = true;
+            this.ThumbnailSnapToGridCheckBox.AutoSize = true;
+            this.ThumbnailSnapToGridCheckBox.Location = new System.Drawing.Point(11, 104);
+            this.ThumbnailSnapToGridCheckBox.Name = "ThumbnailSnapToGridCheckBox";
+            this.ThumbnailSnapToGridCheckBox.Size = new System.Drawing.Size(137, 17);
+            this.ThumbnailSnapToGridCheckBox.TabIndex = 32;
+            this.ThumbnailSnapToGridCheckBox.Text = "Thumbnail Snap to Grid";
+            this.ThumbnailSnapToGridCheckBox.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -989,8 +989,8 @@ namespace EveOPreview.View
             ThumbnailTabPage.ResumeLayout(false);
             ThumbnailSettingsPanel.ResumeLayout(false);
             ThumbnailSettingsPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ThumbnailSnapToGridSizeYNumericEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ThumbnailSnapToGridSizeXNumericEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThumbnailsWidthNumericEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThumbnailsHeightNumericEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThumbnailOpacityTrackBar)).EndInit();
@@ -1049,11 +1049,11 @@ namespace EveOPreview.View
 		private Label VersionLabel;
 		private CheckBox MinimizeInactiveClientsCheckBox;
         private CheckBox LockThumbnailFramesCheckbox;
-        private CheckBox checkBox1;
-        private NumericUpDown numericUpDown2;
+        private NumericUpDown ThumbnailSnapToGridSizeYNumericEdit;
         private Label SnapYLabel;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown ThumbnailSnapToGridSizeXNumericEdit;
         private Label SnapXLabel;
         private CheckBox MinimizeInactiveClientsAnimationCheckBox;
+        private CheckBox ThumbnailSnapToGridCheckBox;
     }
 }

@@ -89,6 +89,7 @@ namespace EveOPreview.View
 			{
 				this.Text = value;
 				this._overlay.SetOverlayLabel(value.Replace("EVE - ", ""));
+				this._overlay.SetPropertiesOverlayLabel(_config.OverlayLabelSize, _config.OverlayLabelColor, _config.OverlayLabelAnchor);
 				SetDefaultBorderColor();
 			}
 		}
@@ -232,6 +233,10 @@ namespace EveOPreview.View
 			this.SuppressResizeEvent();
 
 			this.FormBorderStyle = style;
+		}
+
+		public void SetOverlayLabel()
+		{
 		}
 
 		public void SetTopMost(bool enableTopmost)
@@ -438,6 +443,9 @@ namespace EveOPreview.View
 
 			this._isLocationChanged = false;
 			this._overlay.Size = overlaySize;
+
+			this._overlay.SetPropertiesOverlayLabel(_config.OverlayLabelSize, _config.OverlayLabelColor, _config.OverlayLabelAnchor);
+
 			this._overlay.Location = overlayLocation;
 			this._overlay.Refresh();
 		}

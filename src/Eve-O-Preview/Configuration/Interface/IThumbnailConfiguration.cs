@@ -42,6 +42,7 @@ namespace EveOPreview.Configuration
 		bool ThumbnailZoomEnabled { get; set; }
 		int ThumbnailZoomFactor { get; set; }
 		ZoomAnchor ThumbnailZoomAnchor { get; set; }
+		ZoomAnchor OverlayLabelAnchor {  get; set; }
 
 		bool ShowThumbnailOverlays { get; set; }
 		bool ShowThumbnailFrames { get; set; }
@@ -53,6 +54,8 @@ namespace EveOPreview.Configuration
 		bool EnableActiveClientHighlight { get; set; }
 		Color ActiveClientHighlightColor { get; set; }
 		int ActiveClientHighlightThickness { get; set; }
+		Color OverlayLabelColor { get; set; }
+		int OverlayLabelSize { get; set; }
 
 		Point LoginThumbnailLocation { get; set; }
 

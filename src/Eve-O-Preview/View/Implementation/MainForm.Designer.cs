@@ -67,6 +67,7 @@ namespace EveOPreview.View
             this.HideThumbnailsOnLostFocusCheckBox = new System.Windows.Forms.CheckBox();
             this.EnablePerClientThumbnailsLayoutsCheckBox = new System.Windows.Forms.CheckBox();
             this.MinimizeToTrayCheckBox = new System.Windows.Forms.CheckBox();
+            this.ThumbnailSnapToGridCheckBox = new System.Windows.Forms.CheckBox();
             this.ThumbnailSnapToGridSizeYNumericEdit = new System.Windows.Forms.NumericUpDown();
             this.SnapYLabel = new System.Windows.Forms.Label();
             this.ThumbnailSnapToGridSizeXNumericEdit = new System.Windows.Forms.NumericUpDown();
@@ -88,6 +89,21 @@ namespace EveOPreview.View
             this.ZoomAanchorSWRadioButton = new System.Windows.Forms.RadioButton();
             this.EnableThumbnailZoomCheckBox = new System.Windows.Forms.CheckBox();
             this.ThumbnailZoomFactorNumericEdit = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.OverlayLabelHighlightColorButton = new System.Windows.Forms.Panel();
+            this.OverlayLabelSizeNumericEdit = new System.Windows.Forms.NumericUpDown();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.OverlayLabelNWRadioButton = new System.Windows.Forms.RadioButton();
+            this.OverlayLabelNRadioButton = new System.Windows.Forms.RadioButton();
+            this.OverlayLabelNERadioButton = new System.Windows.Forms.RadioButton();
+            this.OverlayLabelWRadioButton = new System.Windows.Forms.RadioButton();
+            this.OverlayLabelSERadioButton = new System.Windows.Forms.RadioButton();
+            this.OverlayLabelCRadioButton = new System.Windows.Forms.RadioButton();
+            this.OverlayLabelSRadioButton = new System.Windows.Forms.RadioButton();
+            this.OverlayLabelERadioButton = new System.Windows.Forms.RadioButton();
+            this.OverlayLabelSWRadioButton = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.HighlightColorLabel = new System.Windows.Forms.Label();
             this.ActiveClientHighlightColorButton = new System.Windows.Forms.Panel();
             this.EnableActiveClientHighlightCheckBox = new System.Windows.Forms.CheckBox();
@@ -98,7 +114,6 @@ namespace EveOPreview.View
             this.DocumentationLink = new System.Windows.Forms.LinkLabel();
             this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.TrayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ThumbnailSnapToGridCheckBox = new System.Windows.Forms.CheckBox();
             RestoreWindowMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             TitleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -141,6 +156,8 @@ namespace EveOPreview.View
             ((System.ComponentModel.ISupportInitialize)(this.ThumbnailZoomFactorNumericEdit)).BeginInit();
             OverlayTabPage.SuspendLayout();
             OverlaySettingsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OverlayLabelSizeNumericEdit)).BeginInit();
+            this.panel1.SuspendLayout();
             ClientsTabPage.SuspendLayout();
             ClientsPanel.SuspendLayout();
             AboutTabPage.SuspendLayout();
@@ -350,6 +367,16 @@ namespace EveOPreview.View
             ThumbnailSettingsPanel.Name = "ThumbnailSettingsPanel";
             ThumbnailSettingsPanel.Size = new System.Drawing.Size(256, 204);
             ThumbnailSettingsPanel.TabIndex = 19;
+            // 
+            // ThumbnailSnapToGridCheckBox
+            // 
+            this.ThumbnailSnapToGridCheckBox.AutoSize = true;
+            this.ThumbnailSnapToGridCheckBox.Location = new System.Drawing.Point(11, 104);
+            this.ThumbnailSnapToGridCheckBox.Name = "ThumbnailSnapToGridCheckBox";
+            this.ThumbnailSnapToGridCheckBox.Size = new System.Drawing.Size(137, 17);
+            this.ThumbnailSnapToGridCheckBox.TabIndex = 32;
+            this.ThumbnailSnapToGridCheckBox.Text = "Thumbnail Snap to Grid";
+            this.ThumbnailSnapToGridCheckBox.UseVisualStyleBackColor = true;
             // 
             // ThumbnailSnapToGridSizeYNumericEdit
             // 
@@ -732,6 +759,12 @@ namespace EveOPreview.View
             // OverlaySettingsPanel
             // 
             OverlaySettingsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            OverlaySettingsPanel.Controls.Add(this.label3);
+            OverlaySettingsPanel.Controls.Add(this.label2);
+            OverlaySettingsPanel.Controls.Add(this.OverlayLabelHighlightColorButton);
+            OverlaySettingsPanel.Controls.Add(this.OverlayLabelSizeNumericEdit);
+            OverlaySettingsPanel.Controls.Add(this.panel1);
+            OverlaySettingsPanel.Controls.Add(this.label1);
             OverlaySettingsPanel.Controls.Add(this.HighlightColorLabel);
             OverlaySettingsPanel.Controls.Add(this.ActiveClientHighlightColorButton);
             OverlaySettingsPanel.Controls.Add(this.EnableActiveClientHighlightCheckBox);
@@ -742,6 +775,173 @@ namespace EveOPreview.View
             OverlaySettingsPanel.Name = "OverlaySettingsPanel";
             OverlaySettingsPanel.Size = new System.Drawing.Size(262, 210);
             OverlaySettingsPanel.TabIndex = 25;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(5, 146);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 43;
+            this.label3.Text = "Position";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "Color";
+            // 
+            // OverlayLabelHighlightColorButton
+            // 
+            this.OverlayLabelHighlightColorButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.OverlayLabelHighlightColorButton.Location = new System.Drawing.Point(42, 126);
+            this.OverlayLabelHighlightColorButton.Name = "OverlayLabelHighlightColorButton";
+            this.OverlayLabelHighlightColorButton.Size = new System.Drawing.Size(93, 17);
+            this.OverlayLabelHighlightColorButton.TabIndex = 41;
+            // 
+            // OverlayLabelSizeNumericEdit
+            // 
+            this.OverlayLabelSizeNumericEdit.BackColor = System.Drawing.SystemColors.Window;
+            this.OverlayLabelSizeNumericEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.OverlayLabelSizeNumericEdit.CausesValidation = false;
+            this.OverlayLabelSizeNumericEdit.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.OverlayLabelSizeNumericEdit.Location = new System.Drawing.Point(87, 100);
+            this.OverlayLabelSizeNumericEdit.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.OverlayLabelSizeNumericEdit.Name = "OverlayLabelSizeNumericEdit";
+            this.OverlayLabelSizeNumericEdit.Size = new System.Drawing.Size(48, 20);
+            this.OverlayLabelSizeNumericEdit.TabIndex = 40;
+            this.OverlayLabelSizeNumericEdit.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.OverlayLabelNWRadioButton);
+            this.panel1.Controls.Add(this.OverlayLabelNRadioButton);
+            this.panel1.Controls.Add(this.OverlayLabelNERadioButton);
+            this.panel1.Controls.Add(this.OverlayLabelWRadioButton);
+            this.panel1.Controls.Add(this.OverlayLabelSERadioButton);
+            this.panel1.Controls.Add(this.OverlayLabelCRadioButton);
+            this.panel1.Controls.Add(this.OverlayLabelSRadioButton);
+            this.panel1.Controls.Add(this.OverlayLabelERadioButton);
+            this.panel1.Controls.Add(this.OverlayLabelSWRadioButton);
+            this.panel1.Location = new System.Drawing.Point(72, 149);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(63, 57);
+            this.panel1.TabIndex = 39;
+            // 
+            // OverlayLabelNWRadioButton
+            // 
+            this.OverlayLabelNWRadioButton.AutoSize = true;
+            this.OverlayLabelNWRadioButton.Location = new System.Drawing.Point(3, 3);
+            this.OverlayLabelNWRadioButton.Name = "OverlayLabelNWRadioButton";
+            this.OverlayLabelNWRadioButton.Size = new System.Drawing.Size(14, 13);
+            this.OverlayLabelNWRadioButton.TabIndex = 0;
+            this.OverlayLabelNWRadioButton.TabStop = true;
+            this.OverlayLabelNWRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // OverlayLabelNRadioButton
+            // 
+            this.OverlayLabelNRadioButton.AutoSize = true;
+            this.OverlayLabelNRadioButton.Location = new System.Drawing.Point(23, 3);
+            this.OverlayLabelNRadioButton.Name = "OverlayLabelNRadioButton";
+            this.OverlayLabelNRadioButton.Size = new System.Drawing.Size(14, 13);
+            this.OverlayLabelNRadioButton.TabIndex = 1;
+            this.OverlayLabelNRadioButton.TabStop = true;
+            this.OverlayLabelNRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // OverlayLabelNERadioButton
+            // 
+            this.OverlayLabelNERadioButton.AutoSize = true;
+            this.OverlayLabelNERadioButton.Location = new System.Drawing.Point(43, 3);
+            this.OverlayLabelNERadioButton.Name = "OverlayLabelNERadioButton";
+            this.OverlayLabelNERadioButton.Size = new System.Drawing.Size(14, 13);
+            this.OverlayLabelNERadioButton.TabIndex = 2;
+            this.OverlayLabelNERadioButton.TabStop = true;
+            this.OverlayLabelNERadioButton.UseVisualStyleBackColor = true;
+            // 
+            // OverlayLabelWRadioButton
+            // 
+            this.OverlayLabelWRadioButton.AutoSize = true;
+            this.OverlayLabelWRadioButton.Location = new System.Drawing.Point(3, 22);
+            this.OverlayLabelWRadioButton.Name = "OverlayLabelWRadioButton";
+            this.OverlayLabelWRadioButton.Size = new System.Drawing.Size(14, 13);
+            this.OverlayLabelWRadioButton.TabIndex = 3;
+            this.OverlayLabelWRadioButton.TabStop = true;
+            this.OverlayLabelWRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // OverlayLabelSERadioButton
+            // 
+            this.OverlayLabelSERadioButton.AutoSize = true;
+            this.OverlayLabelSERadioButton.Location = new System.Drawing.Point(43, 40);
+            this.OverlayLabelSERadioButton.Name = "OverlayLabelSERadioButton";
+            this.OverlayLabelSERadioButton.Size = new System.Drawing.Size(14, 13);
+            this.OverlayLabelSERadioButton.TabIndex = 8;
+            this.OverlayLabelSERadioButton.TabStop = true;
+            this.OverlayLabelSERadioButton.UseVisualStyleBackColor = true;
+            // 
+            // OverlayLabelCRadioButton
+            // 
+            this.OverlayLabelCRadioButton.AutoSize = true;
+            this.OverlayLabelCRadioButton.Location = new System.Drawing.Point(23, 22);
+            this.OverlayLabelCRadioButton.Name = "OverlayLabelCRadioButton";
+            this.OverlayLabelCRadioButton.Size = new System.Drawing.Size(14, 13);
+            this.OverlayLabelCRadioButton.TabIndex = 4;
+            this.OverlayLabelCRadioButton.TabStop = true;
+            this.OverlayLabelCRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // OverlayLabelSRadioButton
+            // 
+            this.OverlayLabelSRadioButton.AutoSize = true;
+            this.OverlayLabelSRadioButton.Location = new System.Drawing.Point(23, 40);
+            this.OverlayLabelSRadioButton.Name = "OverlayLabelSRadioButton";
+            this.OverlayLabelSRadioButton.Size = new System.Drawing.Size(14, 13);
+            this.OverlayLabelSRadioButton.TabIndex = 7;
+            this.OverlayLabelSRadioButton.TabStop = true;
+            this.OverlayLabelSRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // OverlayLabelERadioButton
+            // 
+            this.OverlayLabelERadioButton.AutoSize = true;
+            this.OverlayLabelERadioButton.Location = new System.Drawing.Point(43, 22);
+            this.OverlayLabelERadioButton.Name = "OverlayLabelERadioButton";
+            this.OverlayLabelERadioButton.Size = new System.Drawing.Size(14, 13);
+            this.OverlayLabelERadioButton.TabIndex = 5;
+            this.OverlayLabelERadioButton.TabStop = true;
+            this.OverlayLabelERadioButton.UseVisualStyleBackColor = true;
+            // 
+            // OverlayLabelSWRadioButton
+            // 
+            this.OverlayLabelSWRadioButton.AutoSize = true;
+            this.OverlayLabelSWRadioButton.Location = new System.Drawing.Point(3, 40);
+            this.OverlayLabelSWRadioButton.Name = "OverlayLabelSWRadioButton";
+            this.OverlayLabelSWRadioButton.Size = new System.Drawing.Size(14, 13);
+            this.OverlayLabelSWRadioButton.TabIndex = 6;
+            this.OverlayLabelSWRadioButton.TabStop = true;
+            this.OverlayLabelSWRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 102);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Label Size";
             // 
             // HighlightColorLabel
             // 
@@ -955,16 +1155,6 @@ namespace EveOPreview.View
             this.TrayMenu.Name = "contextMenuStrip1";
             this.TrayMenu.Size = new System.Drawing.Size(152, 76);
             // 
-            // ThumbnailSnapToGridCheckBox
-            // 
-            this.ThumbnailSnapToGridCheckBox.AutoSize = true;
-            this.ThumbnailSnapToGridCheckBox.Location = new System.Drawing.Point(11, 104);
-            this.ThumbnailSnapToGridCheckBox.Name = "ThumbnailSnapToGridCheckBox";
-            this.ThumbnailSnapToGridCheckBox.Size = new System.Drawing.Size(137, 17);
-            this.ThumbnailSnapToGridCheckBox.TabIndex = 32;
-            this.ThumbnailSnapToGridCheckBox.Text = "Thumbnail Snap to Grid";
-            this.ThumbnailSnapToGridCheckBox.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1003,6 +1193,9 @@ namespace EveOPreview.View
             OverlayTabPage.ResumeLayout(false);
             OverlaySettingsPanel.ResumeLayout(false);
             OverlaySettingsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.OverlayLabelSizeNumericEdit)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ClientsTabPage.ResumeLayout(false);
             ClientsPanel.ResumeLayout(false);
             ClientsPanel.PerformLayout();
@@ -1055,5 +1248,20 @@ namespace EveOPreview.View
         private Label SnapXLabel;
         private CheckBox MinimizeInactiveClientsAnimationCheckBox;
         private CheckBox ThumbnailSnapToGridCheckBox;
+        private Label label3;
+        private Label label2;
+        private Panel OverlayLabelHighlightColorButton;
+        private NumericUpDown OverlayLabelSizeNumericEdit;
+        private Panel panel1;
+        private RadioButton OverlayLabelNWRadioButton;
+        private RadioButton OverlayLabelNRadioButton;
+        private RadioButton OverlayLabelNERadioButton;
+        private RadioButton OverlayLabelWRadioButton;
+        private RadioButton OverlayLabelSERadioButton;
+        private RadioButton OverlayLabelCRadioButton;
+        private RadioButton OverlayLabelSRadioButton;
+        private RadioButton OverlayLabelERadioButton;
+        private RadioButton OverlayLabelSWRadioButton;
+        private Label label1;
     }
 }

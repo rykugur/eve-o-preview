@@ -82,12 +82,15 @@ namespace EveOPreview.Configuration.Implementation
 			this.LockThumbnailLocation = false;
 
 			this.ThumbnailSnapToGrid = true;
-			this.ThumbnailSnapToGridX = 100;
-			this.ThumbnailSnapToGridY = 50;
+			this.ThumbnailSnapToGridSizeX = 100;
+			this.ThumbnailSnapToGridSizeY = 50;
 
-			this.EnableActiveClientHighlight = false;
+            this.EnableActiveClientHighlight = false;
 			this.ActiveClientHighlightColor = Color.GreenYellow;
 			this.ActiveClientHighlightThickness = 3;
+
+			this.OverlayLabelColor = Color.Orange;
+			this.OverlayLabelSize = 10;
 
 			this.LoginThumbnailLocation = new Point(5, 5);
 		}
@@ -172,6 +175,7 @@ namespace EveOPreview.Configuration.Implementation
 		public bool ThumbnailZoomEnabled { get; set; }
 		public int ThumbnailZoomFactor { get; set; }
 		public ZoomAnchor ThumbnailZoomAnchor { get; set; }
+		public ZoomAnchor OverlayLabelAnchor { get; set; }
 
 		public bool ShowThumbnailOverlays { get; set; }
 		public bool ShowThumbnailFrames { get; set; }
@@ -183,7 +187,8 @@ namespace EveOPreview.Configuration.Implementation
 		public bool EnableActiveClientHighlight { get; set; }
 
 		public Color ActiveClientHighlightColor { get; set; }
-
+		public Color OverlayLabelColor { get; set; }
+		public int OverlayLabelSize {  get; set; }
 		public int ActiveClientHighlightThickness { get; set; }
 
 		[JsonProperty("LoginThumbnailLocation")]

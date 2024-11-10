@@ -72,7 +72,7 @@ namespace EveOPreview.View
             this.SnapYLabel = new System.Windows.Forms.Label();
             this.ThumbnailSnapToGridSizeXNumericEdit = new System.Windows.Forms.NumericUpDown();
             this.SnapXLabel = new System.Windows.Forms.Label();
-            this.LockThumbnailFramesCheckbox = new System.Windows.Forms.CheckBox();
+            this.LockThumbnailLocationCheckbox = new System.Windows.Forms.CheckBox();
             this.ThumbnailsWidthNumericEdit = new System.Windows.Forms.NumericUpDown();
             this.ThumbnailsHeightNumericEdit = new System.Windows.Forms.NumericUpDown();
             this.ThumbnailOpacityTrackBar = new System.Windows.Forms.TrackBar();
@@ -91,7 +91,7 @@ namespace EveOPreview.View
             this.ThumbnailZoomFactorNumericEdit = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.OverlayLabelHighlightColorButton = new System.Windows.Forms.Panel();
+            this.OverlayLabelColorButton = new System.Windows.Forms.Panel();
             this.OverlayLabelSizeNumericEdit = new System.Windows.Forms.NumericUpDown();
             this.panel1 = new System.Windows.Forms.Panel();
             this.OverlayLabelNWRadioButton = new System.Windows.Forms.RadioButton();
@@ -355,7 +355,7 @@ namespace EveOPreview.View
             ThumbnailSettingsPanel.Controls.Add(this.SnapYLabel);
             ThumbnailSettingsPanel.Controls.Add(this.ThumbnailSnapToGridSizeXNumericEdit);
             ThumbnailSettingsPanel.Controls.Add(this.SnapXLabel);
-            ThumbnailSettingsPanel.Controls.Add(this.LockThumbnailFramesCheckbox);
+            ThumbnailSettingsPanel.Controls.Add(this.LockThumbnailLocationCheckbox);
             ThumbnailSettingsPanel.Controls.Add(HeigthLabel);
             ThumbnailSettingsPanel.Controls.Add(WidthLabel);
             ThumbnailSettingsPanel.Controls.Add(this.ThumbnailsWidthNumericEdit);
@@ -446,15 +446,15 @@ namespace EveOPreview.View
             this.SnapXLabel.TabIndex = 28;
             this.SnapXLabel.Text = "Snap X";
             // 
-            // LockThumbnailFramesCheckbox
+            // LockThumbnailLocationCheckbox
             // 
-            this.LockThumbnailFramesCheckbox.AutoSize = true;
-            this.LockThumbnailFramesCheckbox.Location = new System.Drawing.Point(11, 81);
-            this.LockThumbnailFramesCheckbox.Name = "LockThumbnailFramesCheckbox";
-            this.LockThumbnailFramesCheckbox.Size = new System.Drawing.Size(146, 17);
-            this.LockThumbnailFramesCheckbox.TabIndex = 26;
-            this.LockThumbnailFramesCheckbox.Text = "Lock Thumbnail Location";
-            this.LockThumbnailFramesCheckbox.UseVisualStyleBackColor = true;
+            this.LockThumbnailLocationCheckbox.AutoSize = true;
+            this.LockThumbnailLocationCheckbox.Location = new System.Drawing.Point(11, 81);
+            this.LockThumbnailLocationCheckbox.Name = "LockThumbnailLocationCheckbox";
+            this.LockThumbnailLocationCheckbox.Size = new System.Drawing.Size(146, 17);
+            this.LockThumbnailLocationCheckbox.TabIndex = 26;
+            this.LockThumbnailLocationCheckbox.Text = "Lock Thumbnail Location";
+            this.LockThumbnailLocationCheckbox.UseVisualStyleBackColor = true;
             // 
             // HeigthLabel
             // 
@@ -761,7 +761,7 @@ namespace EveOPreview.View
             OverlaySettingsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             OverlaySettingsPanel.Controls.Add(this.label3);
             OverlaySettingsPanel.Controls.Add(this.label2);
-            OverlaySettingsPanel.Controls.Add(this.OverlayLabelHighlightColorButton);
+            OverlaySettingsPanel.Controls.Add(this.OverlayLabelColorButton);
             OverlaySettingsPanel.Controls.Add(this.OverlayLabelSizeNumericEdit);
             OverlaySettingsPanel.Controls.Add(this.panel1);
             OverlaySettingsPanel.Controls.Add(this.label1);
@@ -794,13 +794,13 @@ namespace EveOPreview.View
             this.label2.TabIndex = 42;
             this.label2.Text = "Color";
             // 
-            // OverlayLabelHighlightColorButton
+            // OverlayLabelColorButton
             // 
-            this.OverlayLabelHighlightColorButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.OverlayLabelHighlightColorButton.Location = new System.Drawing.Point(42, 126);
-            this.OverlayLabelHighlightColorButton.Name = "OverlayLabelHighlightColorButton";
-            this.OverlayLabelHighlightColorButton.Size = new System.Drawing.Size(93, 17);
-            this.OverlayLabelHighlightColorButton.TabIndex = 41;
+            this.OverlayLabelColorButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.OverlayLabelColorButton.Location = new System.Drawing.Point(42, 126);
+            this.OverlayLabelColorButton.Name = "OverlayLabelColorButton";
+            this.OverlayLabelColorButton.Size = new System.Drawing.Size(93, 17);
+            this.OverlayLabelColorButton.TabIndex = 41;
             // 
             // OverlayLabelSizeNumericEdit
             // 
@@ -1241,7 +1241,7 @@ namespace EveOPreview.View
 		private LinkLabel DocumentationLink;
 		private Label VersionLabel;
 		private CheckBox MinimizeInactiveClientsCheckBox;
-        private CheckBox LockThumbnailFramesCheckbox;
+        private CheckBox LockThumbnailLocationCheckbox;
         private NumericUpDown ThumbnailSnapToGridSizeYNumericEdit;
         private Label SnapYLabel;
         private NumericUpDown ThumbnailSnapToGridSizeXNumericEdit;
@@ -1250,7 +1250,7 @@ namespace EveOPreview.View
         private CheckBox ThumbnailSnapToGridCheckBox;
         private Label label3;
         private Label label2;
-        private Panel OverlayLabelHighlightColorButton;
+        private Panel OverlayLabelColorButton;
         private NumericUpDown OverlayLabelSizeNumericEdit;
         private Panel panel1;
         private RadioButton OverlayLabelNWRadioButton;

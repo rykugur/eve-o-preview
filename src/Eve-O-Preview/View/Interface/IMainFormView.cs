@@ -27,7 +27,7 @@ namespace EveOPreview.View
 		bool EnableThumbnailZoom { get; set; }
 		int ThumbnailZoomFactor { get; set; }
 		ViewZoomAnchor ThumbnailZoomAnchor { get; set; }
-		ViewZoomAnchor OverlayLabelAnchor {  get; set; }
+		ViewZoomAnchor OverlayLabelAnchor { get; set; }
 
 		bool ShowThumbnailOverlays { get; set; }
 		bool ShowThumbnailFrames { get; set; }
@@ -35,7 +35,7 @@ namespace EveOPreview.View
 		bool LockThumbnailLocation { get; set; }
 		bool ThumbnailSnapToGrid { get; set; }
 		int ThumbnailSnapToGridSizeX { get; set; }
-		int ThumbnailSnapToGridSizeY {  get; set; }
+		int ThumbnailSnapToGridSizeY { get; set; }
 
 		bool EnableActiveClientHighlight { get; set; }
 		Color ActiveClientHighlightColor { get; set; }

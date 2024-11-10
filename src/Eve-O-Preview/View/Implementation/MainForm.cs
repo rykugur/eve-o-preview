@@ -78,7 +78,6 @@ namespace EveOPreview.View
 			get => this.MinimizeInactiveClientsCheckBox.Checked;
 			set => this.MinimizeInactiveClientsCheckBox.Checked = value;
 		}
-
 		public bool MinimizeInactiveClientsAnimation
 		{
 			get => this.MinimizeInactiveClientsAnimationCheckBox.Checked;
@@ -200,19 +199,16 @@ namespace EveOPreview.View
 			get => this.ShowThumbnailFramesCheckBox.Checked;
 			set => this.ShowThumbnailFramesCheckBox.Checked = value;
 		}
-
 		public bool LockThumbnailLocation
 		{
-			get => this.LockThumbnailFramesCheckbox.Checked;
-			set => this.LockThumbnailFramesCheckbox.Checked = value;
+			get => this.LockThumbnailLocationCheckbox.Checked;
+			set => this.LockThumbnailLocationCheckbox.Checked = value;
 		}
-
 		public bool ThumbnailSnapToGrid
 		{
 			get => this.ThumbnailSnapToGridCheckBox.Checked;
 			set => this.ThumbnailSnapToGridCheckBox.Checked = value;
 		}
-
 		public int ThumbnailSnapToGridSizeX
 		{
 			get => (int)ThumbnailSnapToGridSizeXNumericEdit.Value;
@@ -247,10 +243,9 @@ namespace EveOPreview.View
 			set
 			{
 				this._OverlayLabelColor = value;
-				this.OverlayLabelHighlightColorButton.BackColor = value;
+				this.OverlayLabelColorButton.BackColor = value;
 			}
 		}
-
 		private Color _OverlayLabelColor;
 
 		public int OverlayLabelSize
@@ -491,7 +486,6 @@ namespace EveOPreview.View
 			this._zoomAnchorMap[ViewZoomAnchor.S] = this.ZoomAanchorSRadioButton;
 			this._zoomAnchorMap[ViewZoomAnchor.SE] = this.ZoomAanchorSERadioButton;
 		}
-
 		private void InitOverlayLabelMap()
 		{
 			this._overlayLabelMap[ViewZoomAnchor.NW] = this.OverlayLabelNWRadioButton;

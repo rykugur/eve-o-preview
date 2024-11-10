@@ -234,7 +234,6 @@ namespace EveOPreview.View
 
 			this.FormBorderStyle = style;
 		}
-
 		public void SetOverlayLabel()
 		{
 		}
@@ -517,6 +516,8 @@ namespace EveOPreview.View
 			if (e.Button == MouseButtons.Right)
 			{
 				this.ExitCustomMouseMode();
+
+				// Snap to Grid on release of mouse (if moved)
 				if (_config.ThumbnailSnapToGrid && this.WindowMoved)
 				{
 					var x = (int)Math.Round((double)this.Location.X / (double)_config.ThumbnailSnapToGridSizeX) * _config.ThumbnailSnapToGridSizeX;

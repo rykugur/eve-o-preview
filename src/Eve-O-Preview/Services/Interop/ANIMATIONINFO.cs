@@ -5,7 +5,7 @@ namespace EveOPreview.Services.Interop
 {
     // Definition for Window Placement Structure
     [StructLayout(LayoutKind.Sequential)]
-    internal class ANIMATIONINFO
+    struct ANIMATIONINFO
     {
         public uint cbSize;
         public int iMinAnimate;

@@ -47,7 +47,7 @@ namespace EveOPreview.View
 					this.OverlayLabel.TextAlign = System.Drawing.ContentAlignment.TopLeft;
 					break;
                 case ZoomAnchor.N:
-                    this.OverlayLabel.Left = (this.Width / 2) - ( this.OverlayLabel.Width / 2);
+                    this.OverlayLabel.Left = (this.Width / 2) - (this.OverlayLabel.Width / 2);
                     this.OverlayLabel.Top = margin;
                     this.OverlayLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
                     break;

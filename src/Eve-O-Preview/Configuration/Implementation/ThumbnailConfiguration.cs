@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 
@@ -76,8 +74,9 @@ namespace EveOPreview.Configuration.Implementation
 			this.ThumbnailZoomEnabled = false;
 			this.ThumbnailZoomFactor = 2;
 			this.ThumbnailZoomAnchor = ZoomAnchor.NW;
+            this.OverlayLabelAnchor = ZoomAnchor.NW;
 
-			this.ShowThumbnailOverlays = true;
+            this.ShowThumbnailOverlays = true;
 			this.ShowThumbnailFrames = false;
 			this.LockThumbnailLocation = false;
 

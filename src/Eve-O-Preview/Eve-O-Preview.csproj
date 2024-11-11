@@ -9,8 +9,8 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EveOPreview</RootNamespace>
-    <AssemblyName>EVE-O-Preview</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <AssemblyName>EVE-O Preview</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
@@ -98,6 +98,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -152,6 +153,7 @@
     <Compile Include="Services\Implementation\DwmThumbnail.cs" />
     <Compile Include="Services\Interface\IDwmThumbnail.cs" />
     <Compile Include="Services\Interface\InteropConstants.cs" />
+    <Compile Include="Services\Interop\ANIMATIONINFO.cs" />
     <Compile Include="Services\Interop\DWM_BLURBEHIND.cs" />
     <Compile Include="Services\Interop\DWM_THUMBNAIL_PROPERTIES.cs" />
     <Compile Include="Services\Interop\DWM_TNP_CONSTANTS.cs" />

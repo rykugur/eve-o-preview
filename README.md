@@ -30,11 +30,24 @@ Video Guides:
 
 * [Eve online , How To : EVE-O Preview (multiboxing; legal)](https://youtu.be/2r0NMKbogXU)
 
+## Development Details
+Use this info to deploy this git in your own dev environment to play with the code and build your own EXE.
+
+1. Install VS Studio (not code)
+* DEPENDENCIES
+  * Core
+  * .NET desktop development workload w/ 4.8 framework
+2. Clone the Git - https://github.com/Proopai/eve-o-preview
+3. Open the Project/Solution
+4. You can now edit code
+5. To build, Right click the `Eve-O-Preview` project in the `Solutions Explorer` and select `Build`
+
+If you did everything correct, VS will now build the project in seconds and tell you where it placed the EXE.
 
 ## System Requirements
 
 * Windows 7, Windows 8/8.1, Windows 10, Windows 11, Linux Wine
-* Microsoft .NET Framework 4.6.2+
+* Microsoft .NET Framework 4.8+
 * EVE clients Display Mode should be set to **Fixed Window** or **Window Mode**. **Fullscreen** mode is not supported.
 
 <div style="page-break-after: always;"></div>
@@ -68,6 +81,7 @@ CCP Grimmi wrote:
 | Track client locations | Determines whether the client's window position should be restored when it is activated or started |
 | Hide preview of active EVE client | Determines whether the thumbnail corresponding to the active EVE client is not displayed |
 | Minimize inactive EVE clients | Allows to auto-minimize inactive EVE clients to save CPU and GPU |
+| Minimize inactive EVE clients Animation | If Minimize Clients is set, this setting will enable windows animations (if checked) or disable if unchecked.
 | Previews always on top | Determines whether EVE client thumbnails should stay on top of all other windows |
 | Hide previews when EVE client is not active | Determines whether all thumbnails should be visible only when an EVE client is active |
 | Unique layout for each EVE client | Determines whether thumbnails positions are different depending on the EVE client being active |
@@ -78,6 +92,9 @@ CCP Grimmi wrote:
 | Opacity | Determines the inactive EVE thumbnails opacity (from almost invisible 20% to 100% solid) |
 | Thumbnail Width | Thumbnails width. Can be set to any value from **100** to **640** points |
 | Thumbnail Height | Thumbnails Height. Can be set to any value from **80** to **400** points |
+| Lock Thumbnail Location | Lock position of thumbnails, preventing misclicks moving your thumbnails |
+| Thumbnail Snap to Grid | Force Thumbnails to snap to defined grid when moved |
+| Snap X / Snap Y | X/Y grid Pixels |
 
 #### **Zoom** Tab
 | Option | Description |
@@ -93,6 +110,9 @@ CCP Grimmi wrote:
 | Show frames | Determines whether thumbnails should be displays with window caption and borders |
 | Highlight active client | Determines whether the thumbnail of the active EVE client should be highlighted with a bright border |
 | Color | Color used to highlight the active client's thumbnail in case the corresponding option is set |
+| Label Size | The fontsize of the overlay label (Character Name) |
+| Label Color | The color of the Font for the Overlay Label |
+| Position | The position of the overlay label in the thumbnail |
 
 #### **Active Clients** Tab
 | Option | Description |
@@ -254,6 +274,8 @@ This setting allows to enable an alternate thumbnail render. This render doesn't
   
 * Dal Shooth
 
+* Izakbar
+
 
 ### Created by
 
@@ -289,5 +311,5 @@ https://bitbucket.org/ulph/eve-o-preview-git
 
 ## CCP Copyright Notice
 
-EVE Online, the EVE logo, EVE and all associated logos and designs are the intellectual property of CCP hf. All artwork, screenshots, characters, vehicles, storylines, world facts or other recognizable features of the intellectual property relating to these trademarks are likewise the intellectual property of CCP hf. EVE Online and the EVE logo are the registered trademarks of CCP hf. All rights are reserved worldwide. All other trademarks are the property of their respective owners. CCP hf. has granted permission to pyfa to use EVE Online and all associated logos and designs for promotional and information purposes on its website but does not endorse, and is not in any way affiliated with, pyfa. CCP is in no way responsible for the content on or functioning of this program, nor can it be liable for any damage arising from the use of this program. 
+EVE Online, the EVE logo, EVE and all associated logos and designs are the intellectual property of CCP hf. All artwork, screenshots, characters, vehicles, storylines, world facts or other recognizable features of the intellectual property relating to these trademarks are likewise the intellectual property of CCP hf. EVE Online and the EVE logo are the registered trademarks of CCP hf. All rights are reserved worldwide. All other trademarks are the property of their respective owners. CCP hf. has granted permission to Eve-O-Preview to use EVE Online and all associated logos and designs for promotional and information purposes on its website but does not endorse, and is not in any way affiliated with, Eve-O-Preview. CCP is in no way responsible for the content on or functioning of this program, nor can it be liable for any damage arising from the use of this program. 
 

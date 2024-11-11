@@ -26,6 +26,7 @@ namespace EveOPreview.Configuration
 		bool EnableClientLayoutTracking { get; set; }
 		bool HideActiveClientThumbnail { get; set; }
 		bool MinimizeInactiveClients { get; set; }
+		bool MinimizeInactiveClientsAnimation { get; set; }
 		bool ShowThumbnailsAlwaysOnTop { get; set; }
 		bool EnablePerClientThumbnailLayouts { get; set; }
 
@@ -41,13 +42,20 @@ namespace EveOPreview.Configuration
 		bool ThumbnailZoomEnabled { get; set; }
 		int ThumbnailZoomFactor { get; set; }
 		ZoomAnchor ThumbnailZoomAnchor { get; set; }
+		ZoomAnchor OverlayLabelAnchor {  get; set; }
 
 		bool ShowThumbnailOverlays { get; set; }
 		bool ShowThumbnailFrames { get; set; }
+		bool LockThumbnailLocation { get; set; }
+		bool ThumbnailSnapToGrid {  get; set; }
+		int ThumbnailSnapToGridSizeX { get; set; }
+		int ThumbnailSnapToGridSizeY { get; set; }
 
 		bool EnableActiveClientHighlight { get; set; }
 		Color ActiveClientHighlightColor { get; set; }
 		int ActiveClientHighlightThickness { get; set; }
+		Color OverlayLabelColor { get; set; }
+		int OverlayLabelSize { get; set; }
 
 		Point LoginThumbnailLocation { get; set; }
 

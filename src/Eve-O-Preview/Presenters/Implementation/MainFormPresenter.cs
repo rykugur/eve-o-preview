@@ -128,6 +128,9 @@ namespace EveOPreview.Presenters
 			this.View.ThumbnailSnapToGridSizeY = this._configuration.ThumbnailSnapToGridSizeY;
 			this.View.EnableActiveClientHighlight = this._configuration.EnableActiveClientHighlight;
 			this.View.ActiveClientHighlightColor = this._configuration.ActiveClientHighlightColor;
+
+			this.View.OverlayLabelColor = this._configuration.OverlayLabelColor;
+			this.View.OverlayLabelSize = this._configuration.OverlayLabelSize;
 		}
 
 		private async void SaveApplicationSettings()

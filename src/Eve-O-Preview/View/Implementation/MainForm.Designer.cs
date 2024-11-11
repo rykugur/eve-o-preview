@@ -249,6 +249,7 @@ namespace EveOPreview.View
             this.MinimizeInactiveClientsAnimationCheckBox.TabIndex = 25;
             this.MinimizeInactiveClientsAnimationCheckBox.Text = "Minimize Inactive Clients Animation";
             this.MinimizeInactiveClientsAnimationCheckBox.UseVisualStyleBackColor = true;
+            this.MinimizeInactiveClientsAnimationCheckBox.CheckedChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // MinimizeInactiveClientsCheckBox
             // 
@@ -377,6 +378,7 @@ namespace EveOPreview.View
             this.ThumbnailSnapToGridCheckBox.TabIndex = 32;
             this.ThumbnailSnapToGridCheckBox.Text = "Thumbnail Snap to Grid";
             this.ThumbnailSnapToGridCheckBox.UseVisualStyleBackColor = true;
+            this.ThumbnailSnapToGridCheckBox.CheckedChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // ThumbnailSnapToGridSizeYNumericEdit
             // 
@@ -436,6 +438,7 @@ namespace EveOPreview.View
             0,
             0,
             0});
+            this.ThumbnailSnapToGridSizeXNumericEdit.ValueChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // SnapXLabel
             // 
@@ -455,6 +458,7 @@ namespace EveOPreview.View
             this.LockThumbnailLocationCheckbox.TabIndex = 26;
             this.LockThumbnailLocationCheckbox.Text = "Lock Thumbnail Location";
             this.LockThumbnailLocationCheckbox.UseVisualStyleBackColor = true;
+            this.LockThumbnailLocationCheckbox.CheckedChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // HeigthLabel
             // 
@@ -801,20 +805,21 @@ namespace EveOPreview.View
             this.OverlayLabelColorButton.Name = "OverlayLabelColorButton";
             this.OverlayLabelColorButton.Size = new System.Drawing.Size(93, 17);
             this.OverlayLabelColorButton.TabIndex = 41;
+            this.OverlayLabelColorButton.Click += new System.EventHandler(this.OverlayLabelColorButton_Click);
             // 
             // OverlayLabelSizeNumericEdit
             // 
             this.OverlayLabelSizeNumericEdit.BackColor = System.Drawing.SystemColors.Window;
             this.OverlayLabelSizeNumericEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.OverlayLabelSizeNumericEdit.CausesValidation = false;
-            this.OverlayLabelSizeNumericEdit.Increment = new decimal(new int[] {
-            10,
+            this.OverlayLabelSizeNumericEdit.Location = new System.Drawing.Point(87, 100);
+            this.OverlayLabelSizeNumericEdit.Maximum = new decimal(new int[] {
+            30,
             0,
             0,
             0});
-            this.OverlayLabelSizeNumericEdit.Location = new System.Drawing.Point(87, 100);
-            this.OverlayLabelSizeNumericEdit.Maximum = new decimal(new int[] {
-            999999,
+            this.OverlayLabelSizeNumericEdit.Minimum = new decimal(new int[] {
+            5,
             0,
             0,
             0});
@@ -822,10 +827,11 @@ namespace EveOPreview.View
             this.OverlayLabelSizeNumericEdit.Size = new System.Drawing.Size(48, 20);
             this.OverlayLabelSizeNumericEdit.TabIndex = 40;
             this.OverlayLabelSizeNumericEdit.Value = new decimal(new int[] {
-            100,
+            30,
             0,
             0,
             0});
+            this.OverlayLabelSizeNumericEdit.ValueChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // panel1
             // 
@@ -853,6 +859,7 @@ namespace EveOPreview.View
             this.OverlayLabelNWRadioButton.TabIndex = 0;
             this.OverlayLabelNWRadioButton.TabStop = true;
             this.OverlayLabelNWRadioButton.UseVisualStyleBackColor = true;
+            this.OverlayLabelNWRadioButton.CheckedChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // OverlayLabelNRadioButton
             // 
@@ -863,6 +870,7 @@ namespace EveOPreview.View
             this.OverlayLabelNRadioButton.TabIndex = 1;
             this.OverlayLabelNRadioButton.TabStop = true;
             this.OverlayLabelNRadioButton.UseVisualStyleBackColor = true;
+            this.OverlayLabelNRadioButton.CheckedChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // OverlayLabelNERadioButton
             // 
@@ -873,6 +881,7 @@ namespace EveOPreview.View
             this.OverlayLabelNERadioButton.TabIndex = 2;
             this.OverlayLabelNERadioButton.TabStop = true;
             this.OverlayLabelNERadioButton.UseVisualStyleBackColor = true;
+            this.OverlayLabelNERadioButton.CheckedChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // OverlayLabelWRadioButton
             // 
@@ -883,6 +892,7 @@ namespace EveOPreview.View
             this.OverlayLabelWRadioButton.TabIndex = 3;
             this.OverlayLabelWRadioButton.TabStop = true;
             this.OverlayLabelWRadioButton.UseVisualStyleBackColor = true;
+            this.OverlayLabelWRadioButton.CheckedChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // OverlayLabelSERadioButton
             // 
@@ -893,6 +903,7 @@ namespace EveOPreview.View
             this.OverlayLabelSERadioButton.TabIndex = 8;
             this.OverlayLabelSERadioButton.TabStop = true;
             this.OverlayLabelSERadioButton.UseVisualStyleBackColor = true;
+            this.OverlayLabelSERadioButton.CheckedChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // OverlayLabelCRadioButton
             // 
@@ -903,6 +914,7 @@ namespace EveOPreview.View
             this.OverlayLabelCRadioButton.TabIndex = 4;
             this.OverlayLabelCRadioButton.TabStop = true;
             this.OverlayLabelCRadioButton.UseVisualStyleBackColor = true;
+            this.OverlayLabelCRadioButton.CheckedChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // OverlayLabelSRadioButton
             // 
@@ -913,6 +925,7 @@ namespace EveOPreview.View
             this.OverlayLabelSRadioButton.TabIndex = 7;
             this.OverlayLabelSRadioButton.TabStop = true;
             this.OverlayLabelSRadioButton.UseVisualStyleBackColor = true;
+            this.OverlayLabelSRadioButton.CheckedChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // OverlayLabelERadioButton
             // 
@@ -923,6 +936,7 @@ namespace EveOPreview.View
             this.OverlayLabelERadioButton.TabIndex = 5;
             this.OverlayLabelERadioButton.TabStop = true;
             this.OverlayLabelERadioButton.UseVisualStyleBackColor = true;
+            this.OverlayLabelERadioButton.CheckedChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // OverlayLabelSWRadioButton
             // 
@@ -933,6 +947,7 @@ namespace EveOPreview.View
             this.OverlayLabelSWRadioButton.TabIndex = 6;
             this.OverlayLabelSWRadioButton.TabStop = true;
             this.OverlayLabelSWRadioButton.UseVisualStyleBackColor = true;
+            this.OverlayLabelSWRadioButton.CheckedChanged += new System.EventHandler(this.OptionChanged_Handler);
             // 
             // label1
             // 

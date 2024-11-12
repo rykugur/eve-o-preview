@@ -15,6 +15,7 @@ namespace EveOPreview.Configuration
 		Dictionary<string, int> CycleGroup2ClientsOrder { get; set; }
 
 		Dictionary<string, Color> PerClientActiveClientHighlightColor { get; set; }
+		Dictionary<string, Size> PerClientThumbnailSize { get; set; }
 
 		bool MinimizeToTray { get; set; }
 		int ThumbnailRefreshPeriod { get; set; }
@@ -60,6 +61,7 @@ namespace EveOPreview.Configuration
 		Point LoginThumbnailLocation { get; set; }
 
 		Point GetThumbnailLocation(string currentClient, string activeClient, Point defaultLocation);
+		Size GetThumbnailSize(string currentClient, string activeClient, Size defaultSize);
 		void SetThumbnailLocation(string currentClient, string activeClient, Point location);
 
 		ClientLayout GetClientLayout(string currentClient);

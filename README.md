@@ -152,6 +152,7 @@ Some of the application options are not exposed in the GUI. They can be adjusted
 | **ThumbnailMinimumSize** | <div style="font-size: small">Minimum thumbnail size that can be set either via GUI or by resizing a thumbnail window. Value is written in the form "width, height"<br />The default value is **"100, 80"**.<br />For example: **"ThumbnailMinimumSize": "100, 80"**</div> |
 | **ThumbnailMaximumSize** | <div style="font-size: small">Maximum thumbnail size that can be set either via GUI or by resizing a thumbnail window. Value is written in the form "width, height"<br />The default value is **"640, 400"**.<br />For example: **"ThumbnailMaximumSize": "640, 400"**</div> |
 | **ThumbnailRefreshPeriod** | <div style="font-size: small">Thumbnail refresh period in milliseconds. This option accepts values between **300** and **1000** only.<br />The default value is **500** milliseconds.<br />For example: **"ThumbnailRefreshPeriod": 500**</div> |
+| **ThumbnailResizeTimeoutPeriod** | <div style="font-size: small">Thumbnail Resize Timeout period in milliseconds. This option accepts values between **200** and **5000** only.<br />The default value is **500** milliseconds.<br />For example: **"ThumbnailResizeTimeoutPeriod": 500**. If you are having the preview windows resize incorrectly on startup increase this value.</div> |
 
 <div style="page-break-after: always;"></div>
 

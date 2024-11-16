@@ -12,7 +12,6 @@ namespace EveOPreview.View
 	public abstract partial class ThumbnailView : Form, IThumbnailView
 	{
 		#region Private constants
-		private const int RESIZE_EVENT_TIMEOUT = 500;
 		private const double OPACITY_THRESHOLD = 0.9;
 		private const double OPACITY_EPSILON = 0.1;
 		#endregion
@@ -50,6 +49,7 @@ namespace EveOPreview.View
 
 		protected ThumbnailView(IWindowManager windowManager, IThumbnailConfiguration config, IThumbnailManager thumbnailManager)
 		{
+			this._config = config;
 			this.SuppressResizeEvent();
 
 			this.WindowManager = windowManager;
@@ -73,7 +73,6 @@ namespace EveOPreview.View
 
 			this._overlay = new ThumbnailOverlay(this, this.MouseDown_Handler);
 
-			this._config = config;
 			SetDefaultBorderColor();
 			this._thumbnailManager = thumbnailManager;
 		}
@@ -453,7 +452,7 @@ namespace EveOPreview.View
 		{
 			// Workaround for WinForms issue with the Resize event being fired with inconsistent ClientSize value
 			// Any Resize events fired before this timestamp will be ignored
-			this._suppressResizeEventsTimestamp = DateTime.UtcNow.AddMilliseconds(ThumbnailView.RESIZE_EVENT_TIMEOUT);
+			this._suppressResizeEventsTimestamp = DateTime.UtcNow.AddMilliseconds(_config.ThumbnailResizeTimeoutPeriod);
 		}
 
 		#region GUI events

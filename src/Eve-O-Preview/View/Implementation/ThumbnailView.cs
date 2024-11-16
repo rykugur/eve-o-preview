@@ -12,7 +12,6 @@ namespace EveOPreview.View
 	public abstract partial class ThumbnailView : Form, IThumbnailView
 	{
 		#region Private constants
-		// private const int RESIZE_EVENT_TIMEOUT = 500;
 		private const double OPACITY_THRESHOLD = 0.9;
 		private const double OPACITY_EPSILON = 0.1;
 		#endregion

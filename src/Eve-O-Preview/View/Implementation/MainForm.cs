@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace EveOPreview.View
@@ -34,6 +35,7 @@ namespace EveOPreview.View
 
 			this.InitZoomAnchorMap();
 			this.InitOverlayLabelMap();
+			this.InitFormSize();
 		}
 
 		public bool MinimizeToTray
@@ -498,5 +500,20 @@ namespace EveOPreview.View
             this._overlayLabelMap[ViewZoomAnchor.S] = this.OverlayLabelSRadioButton;
             this._overlayLabelMap[ViewZoomAnchor.SE] = this.OverlayLabelSERadioButton;
         }
+		private void InitFormSize()
+		{
+			const int BUFFER_PIXEL_AMOUNT = 8;
+			// resize form height based on tabbed control item height
+			var tabControl = (System.Windows.Forms.TabControl)this.Controls.Find("ContentTabControl", false).First();
+			if (tabControl != null)
+			{
+				var furnitureSize = this.Height - tabControl.Height;
+				var calculatedHeight = (tabControl.ItemSize.Width * tabControl.Controls.Count) + furnitureSize + BUFFER_PIXEL_AMOUNT;
+				if (this.Height < calculatedHeight)
+				{
+					this.Height = calculatedHeight;
+				}
+			}
+		}
 	}
 }

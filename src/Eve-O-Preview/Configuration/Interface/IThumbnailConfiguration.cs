@@ -19,7 +19,7 @@ namespace EveOPreview.Configuration
 
 		bool MinimizeToTray { get; set; }
 		int ThumbnailRefreshPeriod { get; set; }
-
+		int ThumbnailResizeTimeoutPeriod { get; set; }
 		bool EnableCompatibilityMode { get; set; }
 
 		double ThumbnailOpacity { get; set; }

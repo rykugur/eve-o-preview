@@ -56,6 +56,7 @@ namespace EveOPreview.Configuration.Implementation
 
 			this.MinimizeToTray = false;
 			this.ThumbnailRefreshPeriod = 500;
+			this.ThumbnailResizeTimeoutPeriod = 500;
 
 			this.EnableCompatibilityMode = false;
 
@@ -130,7 +131,8 @@ namespace EveOPreview.Configuration.Implementation
 
 		public bool MinimizeToTray { get; set; }
 		public int ThumbnailRefreshPeriod { get; set; }
-
+		public int ThumbnailResizeTimeoutPeriod { get; set; }
+		
 		[JsonProperty("CompatibilityMode")]
 		public bool EnableCompatibilityMode { get; set; }
 
@@ -328,6 +330,7 @@ namespace EveOPreview.Configuration.Implementation
 		public void ApplyRestrictions()
 		{
 			this.ThumbnailRefreshPeriod = ThumbnailConfiguration.ApplyRestrictions(this.ThumbnailRefreshPeriod, 300, 1000);
+			this.ThumbnailResizeTimeoutPeriod = ThumbnailConfiguration.ApplyRestrictions(this.ThumbnailResizeTimeoutPeriod, 200, 5000);
 			this.ThumbnailSize = new Size(ThumbnailConfiguration.ApplyRestrictions(this.ThumbnailSize.Width, this.ThumbnailMinimumSize.Width, this.ThumbnailMaximumSize.Width),
 				ThumbnailConfiguration.ApplyRestrictions(this.ThumbnailSize.Height, this.ThumbnailMinimumSize.Height, this.ThumbnailMaximumSize.Height));
 			this.ThumbnailOpacity = ThumbnailConfiguration.ApplyRestrictions((int)(this.ThumbnailOpacity * 100.00), 20, 100) / 100.00;

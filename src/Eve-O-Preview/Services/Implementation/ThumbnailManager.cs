@@ -236,7 +236,7 @@ namespace EveOPreview.Services
 
 				view.RegisterHotkey(this._configuration.GetClientHotkey(view.Title));
 
-				this.ApplyClientLayout(view.Id, view.Title);
+				this.ApplyClientLayout(view);
 
 				// TODO Add extension filter here later
 				if (view.Title != ThumbnailManager.DEFAULT_CLIENT_TITLE)
@@ -263,7 +263,7 @@ namespace EveOPreview.Services
 
 					view.RegisterHotkey(this._configuration.GetClientHotkey(process.Title));
 
-					this.ApplyClientLayout(view.Id, view.Title);
+					this.ApplyClientLayout(view);
 				}
 			}
 
@@ -629,7 +629,7 @@ namespace EveOPreview.Services
 		{
 			this.DisableViewEvents();
 
-			view.ZoomIn(ViewZoomAnchorConverter.Convert(this._configuration.ThumbnailZoomAnchor), this._configuration.ThumbnailZoomFactor);
+			view.ZoomIn(ViewZoomAnchorConverter.Convert(view.ClientZoomAnchor), this._configuration.ThumbnailZoomFactor);
 			view.Refresh(false);
 
 			this.EnableViewEvents();
@@ -725,8 +725,11 @@ namespace EveOPreview.Services
 			return (0, 0);
 		}
 
-		private void ApplyClientLayout(IntPtr clientHandle, string clientTitle)
+		private void ApplyClientLayout(IThumbnailView view)
 		{
+			IntPtr clientHandle = view.Id;
+			string clientTitle = view.Title;
+
 			if (!this._configuration.EnableClientLayoutTracking)
 			{
 				return;
@@ -753,6 +756,8 @@ namespace EveOPreview.Services
 			{
 				this._windowManager.MoveWindow(clientHandle, clientLayout.X, clientLayout.Y, clientLayout.Width, clientLayout.Height);
 			}
+
+			view.ClientZoomAnchor = this._configuration.GetZoomAnchor(clientTitle, this._configuration.ThumbnailZoomAnchor);
 		}
 
 		private void UpdateClientLayouts()

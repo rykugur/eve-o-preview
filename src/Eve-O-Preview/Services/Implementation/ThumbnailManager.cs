@@ -102,7 +102,7 @@ namespace EveOPreview.Services
 		{
 			this.GetActiveClient()?.ClearBorder();
 
-			this._windowManager.ActivateWindow(newClient.Key, this._configuration.MinimizeInactiveClientsAnimation);
+			this._windowManager.ActivateWindow(newClient.Key, this._configuration.WindowsAnimationStyle);
 			this.SwitchActiveClient(newClient.Key, newClient.Value.Title);
 
 			newClient.Value.SetHighlight();
@@ -490,7 +490,7 @@ namespace EveOPreview.Services
 			// Minimize the currently active client if needed
 			if (this._configuration.MinimizeInactiveClients && !this._configuration.IsPriorityClient(this._activeClient.Title))
 			{
-				this._windowManager.MinimizeWindow(this._activeClient.Handle, this._configuration.MinimizeInactiveClientsAnimation);
+				this._windowManager.MinimizeWindow(this._activeClient.Handle, this._configuration.WindowsAnimationStyle, false);
 			}
 
 			this._activeClient = (foregroundClientHandle, foregroundClientTitle);
@@ -541,7 +541,7 @@ namespace EveOPreview.Services
 
 			Task.Run(() =>
 				{
-					this._windowManager.ActivateWindow(view.Id, this._configuration.MinimizeInactiveClientsAnimation);
+					this._windowManager.ActivateWindow(view.Id, this._configuration.WindowsAnimationStyle);
 				})
 				.ContinueWith((task) =>
 				{
@@ -556,7 +556,7 @@ namespace EveOPreview.Services
 		{
 			if (switchOut)
 			{
-				this._windowManager.ActivateWindow(this._externalApplication, this._configuration.MinimizeInactiveClientsAnimation);
+				this._windowManager.ActivateWindow(this._externalApplication, this._configuration.WindowsAnimationStyle);
 			}
 			else
 			{
@@ -565,7 +565,7 @@ namespace EveOPreview.Services
 					return;
 				}
 
-				this._windowManager.MinimizeWindow(view.Id, this._configuration.MinimizeInactiveClientsAnimation);
+				this._windowManager.MinimizeWindow(view.Id, this._configuration.WindowsAnimationStyle, true);
 				this.RefreshThumbnails();
 			}
 		}
@@ -750,7 +750,7 @@ namespace EveOPreview.Services
 
 			if (clientLayout.IsMaximized)
 			{
-				this._windowManager.MaximizeWindow(clientHandle, this._configuration.MinimizeInactiveClientsAnimation);
+				this._windowManager.MaximizeWindow(clientHandle);
 			}
 			else
 			{

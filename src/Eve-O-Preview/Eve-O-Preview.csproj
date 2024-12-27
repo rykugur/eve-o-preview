@@ -126,6 +126,7 @@
     <Compile Include="ApplicationBase\PresenterGeneric.cs" />
     <Compile Include="Configuration\Implementation\AppConfig.cs" />
     <Compile Include="Configuration\Implementation\ConfigurationStorage.cs" />
+    <Compile Include="Configuration\Interface\AnimationStyle.cs" />
     <Compile Include="Configuration\Interface\IAppConfig.cs" />
     <Compile Include="Configuration\Interface\IThumbnailConfiguration.cs" />
     <Compile Include="Configuration\Interface\ZoomAnchor.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Mediator\Messages\Services\StopService.cs" />
     <Compile Include="Mediator\Messages\Thumbnails\ThumbnailLocationUpdated.cs" />
     <Compile Include="Mediator\Messages\Thumbnails\ThumbnailActiveSizeUpdated.cs" />
+    <Compile Include="Presenters\Implementation\ViewAnimationStyleConverter.cs" />
     <Compile Include="Presenters\Interface\IMainFormPresenter.cs" />
     <Compile Include="Services\Implementation\ProcessInfo.cs" />
     <Compile Include="Services\Implementation\ProcessMonitor.cs" />
@@ -184,6 +186,7 @@
     <Compile Include="View\Interface\IMainFormView.cs" />
     <Compile Include="ApplicationBase\IView.cs" />
     <Compile Include="View\Interface\IThumbnailDescription.cs" />
+    <Compile Include="View\Interface\ViewAnimationStyle.cs" />
     <Compile Include="View\Interface\ViewZoomAnchor.cs" />
     <Compile Include="Configuration\Implementation\ThumbnailConfiguration.cs" />
     <Compile Include="Hotkeys\HotkeyHandler.cs" />

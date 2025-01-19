@@ -1,0 +1,77 @@
+description: Install the new launcher (released Dec. 2023)
+game_slug: eve-online
+gogslug: ''
+humblestoreid: ''
+installer_slug: eve-online-dec-2023-launcher
+name: EVE Online
+notes: Eve Online with EVE-O-Preview dependencies installed
+runner: wine
+script:
+  files:
+  - setup:
+      filename: eve-online-latest+Setup.exe
+      url: https://launcher.ccpgames.com/eve-online/release/win32/x64/eve-online-latest+Setup.exe
+  - eve-o-preview: https://github.com/Proopai/eve-o-preview/releases/download/v8.0.0.0/Linux-v8.0.0.0.zip
+  - installer-wine: https://github.com/lutris/wine/releases/download/lutris-wine-7.2-2/wine-lutris-7.2-2-x86_64.tar.xz
+  game:
+    exe: $GAMEDIR/drive_c/users/$USER/AppData/Local/eve-online/eve-online.exe
+    prefix: $GAMEDIR
+  installer:
+    - task:
+        arch: win64
+        description: Creating 64bit Wine prefix.
+        name: create_prefix
+        prefix: $GAMEDIR
+    - task:
+        app: msdelta
+        name: winetricks
+        prefix: $GAMEDIR
+    - task:
+        app: arial
+        name: winetricks
+        prefix: $GAMEDIR
+    - task:
+        app: tahoma
+        name: winetricks
+        prefix: $GAMEDIR
+    - task:
+        app: vcrun2017
+        name: winetricks
+        prefix: $GAMEDIR
+    - task:
+        app: dotnet48
+        name: winetricks
+        prefix: $GAMEDIR
+    - task:
+        app: dotnet8
+        name: winetricks
+        prefix: $GAMEDIR
+    - extract:
+        file: eve-o-preview
+        dst: $GAMEDIR
+    - extract:
+        file: installer-wine
+        dst: $GAMEDIR/installer-wine
+    - task:
+        arch: win64
+        description: Setting Windows 10 mode for Wine
+        key: Version
+        name: set_regedit
+        path: HKEY_CURRENT_USER\Software\Wine
+        prefix: $GAMEDIR
+        value: win10
+    - execute:
+        command: | 
+          WINEPREFIX="$GAMEDIR" WINEDLLOVERRIDES="libglesv2=d,msvcp140=n,msvcp140_1=n" "$GAMEDIR"/installer-wine/bin/wine "$setup"
+  wine:
+    esync: false
+    fsync: false
+    overrides:
+      libglesv2: d
+      msvcp140: n
+      msvcp140_1: n
+slug: eve-online-dec-2023-launcher
+steamid: 8500
+version: Dec 2023 Launcher
+year: 2003
+

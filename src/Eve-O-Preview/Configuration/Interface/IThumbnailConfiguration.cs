@@ -27,7 +27,7 @@ namespace EveOPreview.Configuration
 		bool EnableClientLayoutTracking { get; set; }
 		bool HideActiveClientThumbnail { get; set; }
 		bool MinimizeInactiveClients { get; set; }
-		bool MinimizeInactiveClientsAnimation { get; set; }
+		AnimationStyle WindowsAnimationStyle { get; set; }
 		bool ShowThumbnailsAlwaysOnTop { get; set; }
 		bool EnablePerClientThumbnailLayouts { get; set; }
 
@@ -62,6 +62,7 @@ namespace EveOPreview.Configuration
 
 		Point GetThumbnailLocation(string currentClient, string activeClient, Point defaultLocation);
 		Size GetThumbnailSize(string currentClient, string activeClient, Size defaultSize);
+		ZoomAnchor GetZoomAnchor(string currentClient, ZoomAnchor defaultZoomAnchor);
 		void SetThumbnailLocation(string currentClient, string activeClient, Point location);
 
 		ClientLayout GetClientLayout(string currentClient);

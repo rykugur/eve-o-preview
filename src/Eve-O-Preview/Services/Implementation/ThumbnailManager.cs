@@ -102,7 +102,7 @@ namespace EveOPreview.Services
 		{
 			this.GetActiveClient()?.ClearBorder();
 
-			this._windowManager.ActivateWindow(newClient.Key, this._configuration.MinimizeInactiveClientsAnimation);
+			this._windowManager.ActivateWindow(newClient.Key, this._configuration.WindowsAnimationStyle);
 			this.SwitchActiveClient(newClient.Key, newClient.Value.Title);
 
 			newClient.Value.SetHighlight();
@@ -236,7 +236,7 @@ namespace EveOPreview.Services
 
 				view.RegisterHotkey(this._configuration.GetClientHotkey(view.Title));
 
-				this.ApplyClientLayout(view.Id, view.Title);
+				this.ApplyClientLayout(view);
 
 				// TODO Add extension filter here later
 				if (view.Title != ThumbnailManager.DEFAULT_CLIENT_TITLE)
@@ -263,7 +263,7 @@ namespace EveOPreview.Services
 
 					view.RegisterHotkey(this._configuration.GetClientHotkey(process.Title));
 
-					this.ApplyClientLayout(view.Id, view.Title);
+					this.ApplyClientLayout(view);
 				}
 			}
 
@@ -490,7 +490,7 @@ namespace EveOPreview.Services
 			// Minimize the currently active client if needed
 			if (this._configuration.MinimizeInactiveClients && !this._configuration.IsPriorityClient(this._activeClient.Title))
 			{
-				this._windowManager.MinimizeWindow(this._activeClient.Handle, this._configuration.MinimizeInactiveClientsAnimation);
+				this._windowManager.MinimizeWindow(this._activeClient.Handle, this._configuration.WindowsAnimationStyle, false);
 			}
 
 			this._activeClient = (foregroundClientHandle, foregroundClientTitle);
@@ -541,7 +541,7 @@ namespace EveOPreview.Services
 
 			Task.Run(() =>
 				{
-					this._windowManager.ActivateWindow(view.Id, this._configuration.MinimizeInactiveClientsAnimation);
+					this._windowManager.ActivateWindow(view.Id, this._configuration.WindowsAnimationStyle);
 				})
 				.ContinueWith((task) =>
 				{
@@ -556,7 +556,7 @@ namespace EveOPreview.Services
 		{
 			if (switchOut)
 			{
-				this._windowManager.ActivateWindow(this._externalApplication, this._configuration.MinimizeInactiveClientsAnimation);
+				this._windowManager.ActivateWindow(this._externalApplication, this._configuration.WindowsAnimationStyle);
 			}
 			else
 			{
@@ -565,7 +565,7 @@ namespace EveOPreview.Services
 					return;
 				}
 
-				this._windowManager.MinimizeWindow(view.Id, this._configuration.MinimizeInactiveClientsAnimation);
+				this._windowManager.MinimizeWindow(view.Id, this._configuration.WindowsAnimationStyle, true);
 				this.RefreshThumbnails();
 			}
 		}
@@ -629,7 +629,7 @@ namespace EveOPreview.Services
 		{
 			this.DisableViewEvents();
 
-			view.ZoomIn(ViewZoomAnchorConverter.Convert(this._configuration.ThumbnailZoomAnchor), this._configuration.ThumbnailZoomFactor);
+			view.ZoomIn(ViewZoomAnchorConverter.Convert(view.ClientZoomAnchor), this._configuration.ThumbnailZoomFactor);
 			view.Refresh(false);
 
 			this.EnableViewEvents();
@@ -725,8 +725,11 @@ namespace EveOPreview.Services
 			return (0, 0);
 		}
 
-		private void ApplyClientLayout(IntPtr clientHandle, string clientTitle)
+		private void ApplyClientLayout(IThumbnailView view)
 		{
+			IntPtr clientHandle = view.Id;
+			string clientTitle = view.Title;
+
 			if (!this._configuration.EnableClientLayoutTracking)
 			{
 				return;
@@ -747,12 +750,14 @@ namespace EveOPreview.Services
 
 			if (clientLayout.IsMaximized)
 			{
-				this._windowManager.MaximizeWindow(clientHandle, this._configuration.MinimizeInactiveClientsAnimation);
+				this._windowManager.MaximizeWindow(clientHandle);
 			}
 			else
 			{
 				this._windowManager.MoveWindow(clientHandle, clientLayout.X, clientLayout.Y, clientLayout.Width, clientLayout.Height);
 			}
+
+			view.ClientZoomAnchor = this._configuration.GetZoomAnchor(clientTitle, this._configuration.ThumbnailZoomAnchor);
 		}
 
 		private void UpdateClientLayouts()

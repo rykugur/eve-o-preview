@@ -1,8 +1,10 @@
+using EveOPreview.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EveOPreview.View
 {
@@ -36,6 +38,10 @@ namespace EveOPreview.View
 			this.InitZoomAnchorMap();
 			this.InitOverlayLabelMap();
 			this.InitFormSize();
+
+
+			this.AnimationStyleCombo.DataSource = Enum.GetValues(typeof(AnimationStyle));
+
 		}
 
 		public bool MinimizeToTray
@@ -80,10 +86,10 @@ namespace EveOPreview.View
 			get => this.MinimizeInactiveClientsCheckBox.Checked;
 			set => this.MinimizeInactiveClientsCheckBox.Checked = value;
 		}
-		public bool MinimizeInactiveClientsAnimation
+		public ViewAnimationStyle WindowsAnimationStyle
 		{
-			get => this.MinimizeInactiveClientsAnimationCheckBox.Checked;
-			set => this.MinimizeInactiveClientsAnimationCheckBox.Checked = value;
+			get => (ViewAnimationStyle)this.AnimationStyleCombo.SelectedItem;
+			set => this.AnimationStyleCombo.SelectedIndex = (int)value;
 		}
 
 		public bool ShowThumbnailsAlwaysOnTop
@@ -514,6 +520,16 @@ namespace EveOPreview.View
 					this.Height = calculatedHeight;
 				}
 			}
+		}
+
+		private void AnimationStyleCombo_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void GeneralSettingsPanel_Paint(object sender, PaintEventArgs e)
+		{
+
 		}
 	}
 }

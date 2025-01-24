@@ -81,7 +81,7 @@ CCP Grimmi wrote:
 | Track client locations | Determines whether the client's window position should be restored when it is activated or started |
 | Hide preview of active EVE client | Determines whether the thumbnail corresponding to the active EVE client is not displayed |
 | Minimize inactive EVE clients | Allows to auto-minimize inactive EVE clients to save CPU and GPU |
-| Minimize inactive EVE clients Animation | If Minimize Clients is set, this setting will enable windows animations (if checked) or disable if unchecked.
+| Animation Style | Use original animation style (0) or No Animation style (1). You may find Original is cleaner with fixed window mode and No Animation is cleaner with windowed mode. Especially when using minimize inactive clients.
 | Previews always on top | Determines whether EVE client thumbnails should stay on top of all other windows |
 | Hide previews when EVE client is not active | Determines whether all thumbnails should be visible only when an EVE client is active |
 | Unique layout for each EVE client | Determines whether thumbnails positions are different depending on the EVE client being active |
@@ -275,6 +275,24 @@ You should modify this entry with a list of each of your clients replacing "Exam
 
 If a client does not appear in this list, then it will use the global thumbnail size by default.
 
+### Per Client Zoom Anchor
+Would you like to have different clients with different ZoomAnchor for each thumbnail ?
+
+EVE-O Preview doesn't provide any GUI to set the these per client overrides as yet. Though, It can be done via editing the configuration file directly. 
+**Note** Don't forget to make a backup copy of the file before editing it.
+
+Open the file using any text editor. find the entry **PerClientZoomAnchor**. Most probably it will look like
+
+    "PerClientZoomAnchor": {
+      "EVE - Example Toon 1": 1,
+      "EVE - Example Toon 2": 2,
+      "EVE": 3
+    }
+
+You should modify this entry with a list of each of your clients replacing "Example Toon 1", etc with the name of your character. The values on the right represent the Zoom Anchor for the thumbnail (which sets the starting point of the thumbnail zoom).
+Valid values are 0-8 : 0-NW, 1-North, 2-NE, 3-West, 4-Center, 5-East, 6-SW, 7-South, 8-SE.
+
+If a client does not appear in this list, then it will use the global Zoom Anchor by default.
 ### Compatibility Mode
 
 This setting allows to enable an alternate thumbnail render. This render doesn't use advanced DWM API to create live previews. Instead it is a screenshot-based render with the following pros and cons:

@@ -96,7 +96,8 @@ namespace EveOPreview.View
 		public bool IsActive { get; set; }
 
 		public bool IsOverlayEnabled { get; set; }
-		
+		public ZoomAnchor ClientZoomAnchor { get; set; }
+
 		public Point ThumbnailLocation
 		{
 			get => this.Location;

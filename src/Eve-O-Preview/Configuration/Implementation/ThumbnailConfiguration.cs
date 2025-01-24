@@ -47,6 +47,12 @@ namespace EveOPreview.Configuration.Implementation
 				{"EVE - Example Toon 2", new Size(200, 200)}
 			};
 
+			this.PerClientZoomAnchor = new Dictionary<string, ZoomAnchor>
+			{
+				{"EVE - Example Toon 1", ZoomAnchor.N },
+				{"EVE - Example Toon 2", ZoomAnchor.S}
+			};
+
 			this.PerClientLayout = new Dictionary<string, Dictionary<string, Point>>();
 			this.FlatLayout = new Dictionary<string, Point>();
 			this.ClientLayout = new Dictionary<string, ClientLayout>();
@@ -65,7 +71,7 @@ namespace EveOPreview.Configuration.Implementation
 			this.EnableClientLayoutTracking = false;
 			this.HideActiveClientThumbnail = false;
 			this.MinimizeInactiveClients = false;
-			this.MinimizeInactiveClientsAnimation = false;
+			this.WindowsAnimationStyle = AnimationStyle.NoAnimation;
 			this.ShowThumbnailsAlwaysOnTop = true;
 			this.EnablePerClientThumbnailLayouts = false;
 
@@ -129,6 +135,8 @@ namespace EveOPreview.Configuration.Implementation
 		[JsonProperty("PerClientThumbnailSize")]
 		public Dictionary<string, Size> PerClientThumbnailSize { get; set; }
 
+		[JsonProperty("PerClientZoomAnchor")]
+		public Dictionary<string, ZoomAnchor> PerClientZoomAnchor{ get; set; }
 		public bool MinimizeToTray { get; set; }
 		public int ThumbnailRefreshPeriod { get; set; }
 		public int ThumbnailResizeTimeoutPeriod { get; set; }
@@ -155,7 +163,7 @@ namespace EveOPreview.Configuration.Implementation
 
 		public bool HideActiveClientThumbnail { get; set; }
 		public bool MinimizeInactiveClients { get; set; }
-		public bool MinimizeInactiveClientsAnimation { get; set; }
+		public AnimationStyle WindowsAnimationStyle { get; set; }
 		public bool ShowThumbnailsAlwaysOnTop { get; set; }
 
 		public bool EnablePerClientThumbnailLayouts
@@ -245,6 +253,11 @@ namespace EveOPreview.Configuration.Implementation
 		{
 			Size sizeOfThumbnail;
 			return this.PerClientThumbnailSize.TryGetValue(currentClient, out sizeOfThumbnail) ? sizeOfThumbnail : defaultSize;
+		}
+		public ZoomAnchor GetZoomAnchor(string currentClient, ZoomAnchor defaultZoomAnchor)
+		{
+			ZoomAnchor zoomAnchor;
+			return this.PerClientZoomAnchor.TryGetValue(currentClient, out zoomAnchor) ? zoomAnchor : defaultZoomAnchor;
 		}
 
 		public void SetThumbnailLocation(string currentClient, string activeClient, Point location)

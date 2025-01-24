@@ -207,6 +207,12 @@ namespace EveOPreview.Services
 
 			foreach (IProcessInfo process in addedProcesses)
 			{
+				Size initialSize = this._configuration.ThumbnailSize;
+				if (this._configuration.PerClientThumbnailSize.Any(x => x.Key == process.Title))
+				{
+					initialSize = this._configuration.PerClientThumbnailSize[process.Title];
+				}
+
 				IThumbnailView view = this._thumbnailViewFactory.Create(process.Handle, process.Title, this._configuration.ThumbnailSize);
 				view.IsOverlayEnabled = this._configuration.ShowThumbnailOverlays;
 				view.SetFrames(this._configuration.ShowThumbnailFrames);
@@ -407,7 +413,8 @@ namespace EveOPreview.Services
 					if (this.IsManageableThumbnail(view))
 					{
 						view.ThumbnailLocation = this._configuration.GetThumbnailLocation(view.Title, this._activeClient.Title, view.ThumbnailLocation);
-					}
+                        view.ThumbnailSize = this._configuration.GetThumbnailSize(view.Title, this._activeClient.Title, view.ThumbnailSize);
+                    }
 
 					view.SetOpacity(this._configuration.ThumbnailOpacity);
 					view.SetTopMost(this._configuration.ShowThumbnailsAlwaysOnTop);
@@ -745,8 +752,9 @@ namespace EveOPreview.Services
 			else
 			{
 				this._windowManager.MoveWindow(clientHandle, clientLayout.X, clientLayout.Y, clientLayout.Width, clientLayout.Height);
-			}
-		}
+            }
+
+        }
 
 		private void UpdateClientLayouts()
 		{

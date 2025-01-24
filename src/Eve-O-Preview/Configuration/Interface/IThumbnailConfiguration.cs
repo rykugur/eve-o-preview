@@ -15,17 +15,19 @@ namespace EveOPreview.Configuration
 		Dictionary<string, int> CycleGroup2ClientsOrder { get; set; }
 
 		Dictionary<string, Color> PerClientActiveClientHighlightColor { get; set; }
+        Dictionary<string, Size> PerClientThumbnailSize { get; set; }
 
-		bool MinimizeToTray { get; set; }
+        bool MinimizeToTray { get; set; }
 		int ThumbnailRefreshPeriod { get; set; }
-
-		bool EnableWineCompatibilityMode { get; set; }
+        int ThumbnailResizeTimeoutPeriod { get; set; }
+        bool EnableWineCompatibilityMode { get; set; }
 
 		double ThumbnailOpacity { get; set; }
 
 		bool EnableClientLayoutTracking { get; set; }
 		bool HideActiveClientThumbnail { get; set; }
 		bool MinimizeInactiveClients { get; set; }
+
 		bool ShowThumbnailsAlwaysOnTop { get; set; }
 		bool EnablePerClientThumbnailLayouts { get; set; }
 
@@ -41,18 +43,27 @@ namespace EveOPreview.Configuration
 		bool ThumbnailZoomEnabled { get; set; }
 		int ThumbnailZoomFactor { get; set; }
 		ZoomAnchor ThumbnailZoomAnchor { get; set; }
+        ZoomAnchor OverlayLabelAnchor { get; set; }
 
-		bool ShowThumbnailOverlays { get; set; }
+        bool ShowThumbnailOverlays { get; set; }
 		bool ShowThumbnailFrames { get; set; }
+        bool LockThumbnailLocation { get; set; }
+        bool ThumbnailSnapToGrid { get; set; }
+        int ThumbnailSnapToGridSizeX { get; set; }
+        int ThumbnailSnapToGridSizeY { get; set; }
 
-		bool EnableActiveClientHighlight { get; set; }
+        bool EnableActiveClientHighlight { get; set; }
 		Color ActiveClientHighlightColor { get; set; }
 		int ActiveClientHighlightThickness { get; set; }
+        Color OverlayLabelColor { get; set; }
+        int OverlayLabelSize { get; set; }
 
-		Point LoginThumbnailLocation { get; set; }
+        Point LoginThumbnailLocation { get; set; }
 
 		Point GetThumbnailLocation(string currentClient, string activeClient, Point defaultLocation);
-		void SetThumbnailLocation(string currentClient, string activeClient, Point location);
+        Size GetThumbnailSize(string currentClient, string activeClient, Size defaultSize);
+        ZoomAnchor GetZoomAnchor(string currentClient, ZoomAnchor defaultZoomAnchor);
+        void SetThumbnailLocation(string currentClient, string activeClient, Point location);
 
 		ClientLayout GetClientLayout(string currentClient);
 		void SetClientLayout(string currentClient, ClientLayout layout);

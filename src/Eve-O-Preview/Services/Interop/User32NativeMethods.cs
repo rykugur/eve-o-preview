@@ -4,8 +4,11 @@ using System.Runtime.InteropServices;
 namespace EveOPreview.Services.Interop
 {
 	static class User32NativeMethods
-	{
-		[DllImport("user32.dll")]
+    {
+        public const uint SPI_SETANIMATION = 0x0049;
+        public const uint SPI_GETANIMATION = 0x0048;
+
+        [DllImport("user32.dll")]
 		public static extern IntPtr GetForegroundWindow();
 
 		[DllImport("user32.dll")]

@@ -41,7 +41,19 @@ namespace EveOPreview.Configuration.Implementation
 				{"EVE - Example Toon 2", Color.Green}
 			};
 
-			this.PerClientLayout = new Dictionary<string, Dictionary<string, Point>>();
+			this.PerClientThumbnailSize = new Dictionary<string, Size>
+			{
+                {"EVE - Example Toon 1", new Size(200, 200)},
+                {"EVE - Example Toon 2", new Size(200, 200)}
+            };
+
+            this.PerClientZoomAnchor = new Dictionary<string, ZoomAnchor>
+            {
+                {"EVE - Example Toon 1", ZoomAnchor.N },
+                {"EVE - Example Toon 2", ZoomAnchor.S}
+            };
+
+            this.PerClientLayout = new Dictionary<string, Dictionary<string, Point>>();
 			this.FlatLayout = new Dictionary<string, Point>();
 			this.ClientLayout = new Dictionary<string, ClientLayout>();
 			this.ClientHotkey = new Dictionary<string, string>();
@@ -50,14 +62,16 @@ namespace EveOPreview.Configuration.Implementation
 
 			this.MinimizeToTray = false;
 			this.ThumbnailRefreshPeriod = 500;
+            this.ThumbnailResizeTimeoutPeriod = 500;
 
-			this.EnableWineCompatibilityMode = false;
+            this.EnableWineCompatibilityMode = false;
 
 			this.ThumbnailOpacity = 0.5;
 
 			this.EnableClientLayoutTracking = false;
 			this.HideActiveClientThumbnail = false;
 			this.MinimizeInactiveClients = false;
+
 			this.ShowThumbnailsAlwaysOnTop = true;
 			this.EnablePerClientThumbnailLayouts = false;
 
@@ -73,15 +87,24 @@ namespace EveOPreview.Configuration.Implementation
 			this.ThumbnailZoomEnabled = false;
 			this.ThumbnailZoomFactor = 2;
 			this.ThumbnailZoomAnchor = ZoomAnchor.NW;
+            this.OverlayLabelAnchor = ZoomAnchor.NW;
 
-			this.ShowThumbnailOverlays = true;
+            this.ShowThumbnailOverlays = true;
 			this.ShowThumbnailFrames = false;
+            this.LockThumbnailLocation = false;
 
-			this.EnableActiveClientHighlight = false;
+            this.ThumbnailSnapToGrid = true;
+            this.ThumbnailSnapToGridSizeX = 100;
+            this.ThumbnailSnapToGridSizeY = 50;
+
+            this.EnableActiveClientHighlight = false;
 			this.ActiveClientHighlightColor = Color.GreenYellow;
 			this.ActiveClientHighlightThickness = 3;
 
-			this.LoginThumbnailLocation = new Point(5, 5);
+            this.OverlayLabelColor = Color.Orange;
+            this.OverlayLabelSize = 10;
+
+            this.LoginThumbnailLocation = new Point(5, 5);
 		}
 
 
@@ -109,10 +132,16 @@ namespace EveOPreview.Configuration.Implementation
 		[JsonProperty("PerClientActiveClientHighlightColor")]
 		public Dictionary<string, Color> PerClientActiveClientHighlightColor { get; set; }
 
-		public bool MinimizeToTray { get; set; }
-		public int ThumbnailRefreshPeriod { get; set; }
+        [JsonProperty("PerClientThumbnailSize")]
+        public Dictionary<string, Size> PerClientThumbnailSize { get; set; }
 
-		[JsonProperty("WineCompatibilityMode")]
+        [JsonProperty("PerClientZoomAnchor")]
+        public Dictionary<string, ZoomAnchor> PerClientZoomAnchor { get; set; }
+        public bool MinimizeToTray { get; set; }
+		public int ThumbnailRefreshPeriod { get; set; }
+        public int ThumbnailResizeTimeoutPeriod { get; set; }
+
+        [JsonProperty("WineCompatibilityMode")]
 		public bool EnableWineCompatibilityMode { get; set; }
 
 		[JsonProperty("ThumbnailsOpacity")]
@@ -134,6 +163,7 @@ namespace EveOPreview.Configuration.Implementation
 
 		public bool HideActiveClientThumbnail { get; set; }
 		public bool MinimizeInactiveClients { get; set; }
+
 		public bool ShowThumbnailsAlwaysOnTop { get; set; }
 
 		public bool EnablePerClientThumbnailLayouts
@@ -163,15 +193,21 @@ namespace EveOPreview.Configuration.Implementation
 		public bool ThumbnailZoomEnabled { get; set; }
 		public int ThumbnailZoomFactor { get; set; }
 		public ZoomAnchor ThumbnailZoomAnchor { get; set; }
+        public ZoomAnchor OverlayLabelAnchor { get; set; }
 
-		public bool ShowThumbnailOverlays { get; set; }
+        public bool ShowThumbnailOverlays { get; set; }
 		public bool ShowThumbnailFrames { get; set; }
+        public bool LockThumbnailLocation { get; set; }
+        public bool ThumbnailSnapToGrid { get; set; }
+        public int ThumbnailSnapToGridSizeX { get; set; }
+        public int ThumbnailSnapToGridSizeY { get; set; }
 
-		public bool EnableActiveClientHighlight { get; set; }
+        public bool EnableActiveClientHighlight { get; set; }
 
 		public Color ActiveClientHighlightColor { get; set; }
-
-		public int ActiveClientHighlightThickness { get; set; }
+        public Color OverlayLabelColor { get; set; }
+        public int OverlayLabelSize { get; set; }
+        public int ActiveClientHighlightThickness { get; set; }
 
 		[JsonProperty("LoginThumbnailLocation")]
 		public Point LoginThumbnailLocation { get; set; }
@@ -211,9 +247,20 @@ namespace EveOPreview.Configuration.Implementation
 			}
 
 			return this.FlatLayout.TryGetValue(currentClient, out location) ? location : defaultLocation;
-		}
+        }
 
-		public void SetThumbnailLocation(string currentClient, string activeClient, Point location)
+        public Size GetThumbnailSize(string currentClient, string activeClient, Size defaultSize)
+        {
+            Size sizeOfThumbnail;
+            return this.PerClientThumbnailSize.TryGetValue(currentClient, out sizeOfThumbnail) ? sizeOfThumbnail : defaultSize;
+        }
+        public ZoomAnchor GetZoomAnchor(string currentClient, ZoomAnchor defaultZoomAnchor)
+        {
+            ZoomAnchor zoomAnchor;
+            return this.PerClientZoomAnchor.TryGetValue(currentClient, out zoomAnchor) ? zoomAnchor : defaultZoomAnchor;
+        }
+
+        public void SetThumbnailLocation(string currentClient, string activeClient, Point location)
 		{
 			Dictionary<string, Point> layoutSource;
 
@@ -296,7 +343,8 @@ namespace EveOPreview.Configuration.Implementation
 		public void ApplyRestrictions()
 		{
 			this.ThumbnailRefreshPeriod = ThumbnailConfiguration.ApplyRestrictions(this.ThumbnailRefreshPeriod, 300, 1000);
-			this.ThumbnailSize = new Size(ThumbnailConfiguration.ApplyRestrictions(this.ThumbnailSize.Width, this.ThumbnailMinimumSize.Width, this.ThumbnailMaximumSize.Width),
+            this.ThumbnailResizeTimeoutPeriod = ThumbnailConfiguration.ApplyRestrictions(this.ThumbnailResizeTimeoutPeriod, 200, 5000);
+            this.ThumbnailSize = new Size(ThumbnailConfiguration.ApplyRestrictions(this.ThumbnailSize.Width, this.ThumbnailMinimumSize.Width, this.ThumbnailMaximumSize.Width),
 				ThumbnailConfiguration.ApplyRestrictions(this.ThumbnailSize.Height, this.ThumbnailMinimumSize.Height, this.ThumbnailMaximumSize.Height));
 			this.ThumbnailOpacity = ThumbnailConfiguration.ApplyRestrictions((int)(this.ThumbnailOpacity * 100.00), 20, 100) / 100.00;
 			this.ThumbnailZoomFactor = ThumbnailConfiguration.ApplyRestrictions(this.ThumbnailZoomFactor, 2, 10);

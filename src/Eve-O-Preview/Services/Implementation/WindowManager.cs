@@ -10,10 +10,11 @@ namespace EveOPreview.Services.Implementation
 	{
 		#region Private constants
 		private const int WINDOW_SIZE_THRESHOLD = 300;
-		#endregion
+        private const int NO_ANIMATION = 0;
+        #endregion
 
-		#region Private fields
-		private readonly bool _enableWineCompatabilityMode;
+        #region Private fields
+        private readonly bool _enableWineCompatabilityMode;
         #endregion
 
         public WindowManager(IThumbnailConfiguration configuration)

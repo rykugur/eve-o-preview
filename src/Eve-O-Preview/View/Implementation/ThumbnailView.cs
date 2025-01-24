@@ -12,7 +12,7 @@ namespace EveOPreview.View
 	public abstract partial class ThumbnailView : Form, IThumbnailView
 	{
 		#region Private constants
-		private const int RESIZE_EVENT_TIMEOUT = 500;
+		// private const int RESIZE_EVENT_TIMEOUT = 500;
 		private const double OPACITY_THRESHOLD = 0.9;
 		private const double OPACITY_EPSILON = 0.1;
 		#endregion
@@ -49,8 +49,9 @@ namespace EveOPreview.View
 		#endregion
 
 		protected ThumbnailView(IWindowManager windowManager, IThumbnailConfiguration config, IThumbnailManager thumbnailManager)
-		{
-			this.SuppressResizeEvent();
+        {
+            this._config = config;
+            this.SuppressResizeEvent();
 
 			this.WindowManager = windowManager;
 
@@ -73,7 +74,6 @@ namespace EveOPreview.View
 
 			this._overlay = new ThumbnailOverlay(this, this.MouseDown_Handler);
 
-			this._config = config;
 			SetDefaultBorderColor();
 			this._thumbnailManager = thumbnailManager;
 		}
@@ -89,15 +89,17 @@ namespace EveOPreview.View
 			{
 				this.Text = value;
 				this._overlay.SetOverlayLabel(value.Replace("EVE - ", ""));
-				SetDefaultBorderColor();
+                this._overlay.SetPropertiesOverlayLabel(_config.OverlayLabelSize, _config.OverlayLabelColor, _config.OverlayLabelAnchor);
+                SetDefaultBorderColor();
 			}
 		}
 
 		public bool IsActive { get; set; }
 
 		public bool IsOverlayEnabled { get; set; }
-		
-		public Point ThumbnailLocation
+        public ZoomAnchor ClientZoomAnchor { get; set; }
+
+        public Point ThumbnailLocation
 		{
 			get => this.Location;
 			set
@@ -125,7 +127,9 @@ namespace EveOPreview.View
 
 		public Action<IntPtr, bool> ThumbnailDeactivated { get; set; }
 
-		public void SetDefaultBorderColor()
+        private bool WindowMoved = false;
+
+        public void SetDefaultBorderColor()
 		{
 			this._myBorderColor = new Lazy<Color>(() =>
 			{
@@ -232,7 +236,11 @@ namespace EveOPreview.View
 			this.FormBorderStyle = style;
 		}
 
-		public void SetTopMost(bool enableTopmost)
+        public void SetOverlayLabel()
+        {
+        }
+
+        public void SetTopMost(bool enableTopmost)
 		{
 			if (this._isTopMost == enableTopmost)
 			{
@@ -436,7 +444,8 @@ namespace EveOPreview.View
 
 			this._isLocationChanged = false;
 			this._overlay.Size = overlaySize;
-			this._overlay.Location = overlayLocation;
+            this._overlay.SetPropertiesOverlayLabel(_config.OverlayLabelSize, _config.OverlayLabelColor, _config.OverlayLabelAnchor);
+            this._overlay.Location = overlayLocation;
 			this._overlay.Refresh();
 		}
 
@@ -444,7 +453,7 @@ namespace EveOPreview.View
 		{
 			// Workaround for WinForms issue with the Resize event being fired with inconsistent ClientSize value
 			// Any Resize events fired before this timestamp will be ignored
-			this._suppressResizeEventsTimestamp = DateTime.UtcNow.AddMilliseconds(ThumbnailView.RESIZE_EVENT_TIMEOUT);
+			this._suppressResizeEventsTimestamp = DateTime.UtcNow.AddMilliseconds(_config.ThumbnailResizeTimeoutPeriod);
 		}
 
 		#region GUI events
@@ -502,15 +511,27 @@ namespace EveOPreview.View
 			}
 		}
 
-		private void MouseUp_Handler(object sender, MouseEventArgs e)
-		{
-			if (e.Button == MouseButtons.Right)
-			{
-				this.ExitCustomMouseMode();
-			}
-		}
+        private void MouseUp_Handler(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                this.ExitCustomMouseMode();
 
-		private void HotkeyPressed_Handler(object sender, HandledEventArgs e)
+                // Snap to Grid on release of mouse (if moved)
+                if (_config.ThumbnailSnapToGrid && this.WindowMoved)
+                {
+                    var x = (int)Math.Round((double)this.Location.X / (double)_config.ThumbnailSnapToGridSizeX) * _config.ThumbnailSnapToGridSizeX;
+                    var y = (int)Math.Round((double)this.Location.Y / (double)_config.ThumbnailSnapToGridSizeY) * _config.ThumbnailSnapToGridSizeY;
+                    this.Location = new Point(x, y);
+                    this._baseZoomLocation = this.Location;
+
+                    this.WindowMoved = false;
+
+                }
+            }
+        }
+
+        private void HotkeyPressed_Handler(object sender, HandledEventArgs e)
 		{
 			this.SetHighlight();
 			this.ThumbnailActivated?.Invoke(this.Id);

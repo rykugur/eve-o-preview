@@ -28,8 +28,8 @@ namespace EveOPreview.View
 			this._overlayLabelMap = new Dictionary<ViewZoomAnchor, RadioButton>();
 			this._cachedThumbnailZoomAnchor = ViewZoomAnchor.NW;
 			this._suppressEvents = false;
-			this._minimumSize = new Size(80, 60);
-			this._maximumSize = new Size(80, 60);
+			this._minimumSize = new Size(20, 20);
+			this._maximumSize = new Size(20, 20);
 
 			InitializeComponent();
 

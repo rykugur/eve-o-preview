@@ -57,6 +57,7 @@
 			this.OverlayLabel.Size = new System.Drawing.Size(25, 13);
 			this.OverlayLabel.TabIndex = 1;
 			this.OverlayLabel.Text = "...";
+			this.OverlayLabel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OverlayArea_Click);
 			// 
 			// ThumbnailOverlay
 			// 

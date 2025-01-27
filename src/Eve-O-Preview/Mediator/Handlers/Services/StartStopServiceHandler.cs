@@ -19,14 +19,14 @@ namespace EveOPreview.Mediator.Handlers.Services
 		{
 			this._manager.Start();
 
-			return Unit.Task;
+            return Task.FromResult(Unit.Value);
 		}
 
 		public Task<Unit> Handle(StopService message, CancellationToken cancellationToken)
 		{
 			this._manager.Stop();
 
-			return Unit.Task;
+            return Task.FromResult(Unit.Value);
 		}
 	}
 }

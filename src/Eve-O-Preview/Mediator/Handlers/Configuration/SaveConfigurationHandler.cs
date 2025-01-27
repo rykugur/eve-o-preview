@@ -19,7 +19,7 @@ namespace EveOPreview.Mediator.Handlers.Configuration
 		{
 			this._storage.Save();
 
-			return Unit.Task;
+            return Task.FromResult(Unit.Value);
 		}
 	}
 }

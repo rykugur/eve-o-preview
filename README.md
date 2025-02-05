@@ -220,19 +220,29 @@ Next find the entry **CycleGroup1ForwardHotkeys**. Most probably it will look li
 You should modify this entry with a list of each of your clients replacing "Example DPS Toon 1", etc with the name of your character. The numbers on the right are used to force the order in which they cycle.
 If a character appears in the list but is not currently logged in, then it will simply be skipped.
 If a character does not appear in the list, then they will never become active when cycling clients.
+If "EVE" is used instead of a character name - then this is taken to mean active clients with no active character (ie on character selection screen). This would allow you to setup a cycle group to go through clients at character selection screen. EVE-O Preview will cycle through all clients in this state.
 
-By now you may have noticed that there are two groups. The above configuration can be followed for a second group by using the values **CycleGroup2ForwardHotkeys**, **CycleGroup2BackwardHotkeys**, and **CycleGroup2ForwardHotkeys**
-This may provide useful if you want to have one HotKey to cycle through a group of DPS characters, while another HotKey cycles through support roles such as gate scouts, or a group of logi.
+By now you may have noticed that there are multiple groups. The above configuration can be followed for a second group by using the values **CycleGroup2ForwardHotkeys**, **CycleGroup2BackwardHotkeys**, and **CycleGroup2ForwardHotkeys**
+This may provide useful if you want to have one HotKey to cycle through a group of DPS characters, while another HotKey cycles through support roles such as gate scouts, or a group of logi. Cyclegroups are numbered 1 through 5.
 
 Alternatively you may not want to use any of these HotKeys. Please note that deleting the values in their entirety will simply result in them being automatically re-generated.
 Should you wish to remove these HotKeys completely, Simply set the values to empty, such as the example below:
 
-      "CycleGroup1ForwardHotkeys": [],
+    "CycleGroup1ForwardHotkeys": [],
 	  "CycleGroup1BackwardHotkeys": [],
 	  "CycleGroup1ClientsOrder": {},
 	  "CycleGroup2ForwardHotkeys": [],
 	  "CycleGroup2BackwardHotkeys": [],
-	  "CycleGroup2ClientsOrder": {}
+	  "CycleGroup2ClientsOrder": {},
+	  "CycleGroup3ForwardHotkeys": [],
+	  "CycleGroup3BackwardHotkeys": [],
+	  "CycleGroup3ClientsOrder": {},
+	  "CycleGroup4ForwardHotkeys": [],
+	  "CycleGroup4BackwardHotkeys": [],
+	  "CycleGroup4ClientsOrder": {},
+	  "CycleGroup5ForwardHotkeys": [],
+	  "CycleGroup5BackwardHotkeys": [],
+	  "CycleGroup5ClientsOrder": {}
 
 **Hints** 
 * Minimise the use of modifiers or standard keys to minimise issues with the client playing up. In the default example unusual Function keys (e.g. F14) are used which are then bound to a game pad or gaming mouse.

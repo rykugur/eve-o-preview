@@ -81,6 +81,15 @@ namespace EveOPreview.Services
 
 			RegisterCycleClientHotkey(this._configuration.CycleGroup2ForwardHotkeys?.Select(x => this._configuration.StringToKey(x)), true, this._configuration.CycleGroup2ClientsOrder);
 			RegisterCycleClientHotkey(this._configuration.CycleGroup2BackwardHotkeys?.Select(x => this._configuration.StringToKey(x)), false, this._configuration.CycleGroup2ClientsOrder);
+
+			RegisterCycleClientHotkey(this._configuration.CycleGroup3ForwardHotkeys?.Select(x => this._configuration.StringToKey(x)), true, this._configuration.CycleGroup3ClientsOrder);
+			RegisterCycleClientHotkey(this._configuration.CycleGroup3BackwardHotkeys?.Select(x => this._configuration.StringToKey(x)), false, this._configuration.CycleGroup3ClientsOrder);
+
+			RegisterCycleClientHotkey(this._configuration.CycleGroup4ForwardHotkeys?.Select(x => this._configuration.StringToKey(x)), true, this._configuration.CycleGroup4ClientsOrder);
+			RegisterCycleClientHotkey(this._configuration.CycleGroup4BackwardHotkeys?.Select(x => this._configuration.StringToKey(x)), false, this._configuration.CycleGroup4ClientsOrder);
+
+			RegisterCycleClientHotkey(this._configuration.CycleGroup5ForwardHotkeys?.Select(x => this._configuration.StringToKey(x)), true, this._configuration.CycleGroup5ClientsOrder);
+			RegisterCycleClientHotkey(this._configuration.CycleGroup5BackwardHotkeys?.Select(x => this._configuration.StringToKey(x)), false, this._configuration.CycleGroup5ClientsOrder);
 		}
 
 		public IThumbnailView GetClientByTitle(string title)

@@ -36,6 +36,25 @@ namespace EveOPreview.Configuration.Implementation
 				{ "EVE - Example Tackle Toon 3", 3 }
 			};
 
+			this.CycleGroup3ForwardHotkeys = new List<string> { "" };
+			this.CycleGroup3BackwardHotkeys = new List<string> { "" };
+			this.CycleGroup3ClientsOrder = new Dictionary<string, int>
+			{
+				{ "EVE - cycle group 3", 1 },
+			};
+			this.CycleGroup4ForwardHotkeys = new List<string> { "" };
+			this.CycleGroup4BackwardHotkeys = new List<string> { "" };
+			this.CycleGroup4ClientsOrder = new Dictionary<string, int>
+			{
+				{ "EVE - cycle group 4", 1 },
+			};
+			this.CycleGroup5ForwardHotkeys = new List<string> { "" };
+			this.CycleGroup5BackwardHotkeys = new List<string> { "" };
+			this.CycleGroup5ClientsOrder = new Dictionary<string, int>
+			{
+				{ "EVE - cycle group 5", 1 },
+			};
+
 			this.PerClientActiveClientHighlightColor = new Dictionary<string, Color>
 			{
 				{"EVE - Example Toon 1", Color.Red},
@@ -132,6 +151,33 @@ namespace EveOPreview.Configuration.Implementation
 
 		[JsonProperty("CycleGroup2ClientsOrder")]
 		public Dictionary<string, int> CycleGroup2ClientsOrder { get; set; }
+
+		[JsonProperty("CycleGroup3ForwardHotkeys")]
+		public List<string> CycleGroup3ForwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup3BackwardHotkeys")]
+		public List<string> CycleGroup3BackwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup3ClientsOrder")]
+		public Dictionary<string, int> CycleGroup3ClientsOrder { get; set; }
+
+		[JsonProperty("CycleGroup4ForwardHotkeys")]
+		public List<string> CycleGroup4ForwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup4BackwardHotkeys")]
+		public List<string> CycleGroup4BackwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup4ClientsOrder")]
+		public Dictionary<string, int> CycleGroup4ClientsOrder { get; set; }
+
+		[JsonProperty("CycleGroup5ForwardHotkeys")]
+		public List<string> CycleGroup5ForwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup5BackwardHotkeys")]
+		public List<string> CycleGroup5BackwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup5ClientsOrder")]
+		public Dictionary<string, int> CycleGroup5ClientsOrder { get; set; }
 
 		[JsonProperty("PerClientActiveClientHighlightColor")]
 		public Dictionary<string, Color> PerClientActiveClientHighlightColor { get; set; }

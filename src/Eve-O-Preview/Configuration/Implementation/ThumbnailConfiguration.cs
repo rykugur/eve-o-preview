@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -35,6 +36,25 @@ namespace EveOPreview.Configuration.Implementation
 				{ "EVE - Example Tackle Toon 3", 3 }
 			};
 
+			this.CycleGroup3ForwardHotkeys = new List<string> { "" };
+			this.CycleGroup3BackwardHotkeys = new List<string> { "" };
+			this.CycleGroup3ClientsOrder = new Dictionary<string, int>
+			{
+				{ "EVE - cycle group 3", 1 },
+			};
+			this.CycleGroup4ForwardHotkeys = new List<string> { "" };
+			this.CycleGroup4BackwardHotkeys = new List<string> { "" };
+			this.CycleGroup4ClientsOrder = new Dictionary<string, int>
+			{
+				{ "EVE - cycle group 4", 1 },
+			};
+			this.CycleGroup5ForwardHotkeys = new List<string> { "" };
+			this.CycleGroup5BackwardHotkeys = new List<string> { "" };
+			this.CycleGroup5ClientsOrder = new Dictionary<string, int>
+			{
+				{ "EVE - cycle group 5", 1 },
+			};
+
 			this.PerClientActiveClientHighlightColor = new Dictionary<string, Color>
 			{
 				{"EVE - Example Toon 1", Color.Red},
@@ -60,6 +80,8 @@ namespace EveOPreview.Configuration.Implementation
 			this.DisableThumbnail = new Dictionary<string, bool>();
 			this.PriorityClients = new List<string>();
 
+			this.ExecutablesToPreview = new List<string> { "exefile" };
+
 			this.MinimizeToTray = false;
 			this.ThumbnailRefreshPeriod = 500;
 			this.ThumbnailResizeTimeoutPeriod = 500;
@@ -70,6 +92,7 @@ namespace EveOPreview.Configuration.Implementation
 
 			this.EnableClientLayoutTracking = false;
 			this.HideActiveClientThumbnail = false;
+			this.HideLoginClientThumbnail = false;
 			this.MinimizeInactiveClients = false;
 			this.WindowsAnimationStyle = AnimationStyle.NoAnimation;
 			this.ShowThumbnailsAlwaysOnTop = true;
@@ -129,6 +152,33 @@ namespace EveOPreview.Configuration.Implementation
 		[JsonProperty("CycleGroup2ClientsOrder")]
 		public Dictionary<string, int> CycleGroup2ClientsOrder { get; set; }
 
+		[JsonProperty("CycleGroup3ForwardHotkeys")]
+		public List<string> CycleGroup3ForwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup3BackwardHotkeys")]
+		public List<string> CycleGroup3BackwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup3ClientsOrder")]
+		public Dictionary<string, int> CycleGroup3ClientsOrder { get; set; }
+
+		[JsonProperty("CycleGroup4ForwardHotkeys")]
+		public List<string> CycleGroup4ForwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup4BackwardHotkeys")]
+		public List<string> CycleGroup4BackwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup4ClientsOrder")]
+		public Dictionary<string, int> CycleGroup4ClientsOrder { get; set; }
+
+		[JsonProperty("CycleGroup5ForwardHotkeys")]
+		public List<string> CycleGroup5ForwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup5BackwardHotkeys")]
+		public List<string> CycleGroup5BackwardHotkeys { get; set; }
+
+		[JsonProperty("CycleGroup5ClientsOrder")]
+		public Dictionary<string, int> CycleGroup5ClientsOrder { get; set; }
+
 		[JsonProperty("PerClientActiveClientHighlightColor")]
 		public Dictionary<string, Color> PerClientActiveClientHighlightColor { get; set; }
 
@@ -162,6 +212,7 @@ namespace EveOPreview.Configuration.Implementation
 		}
 
 		public bool HideActiveClientThumbnail { get; set; }
+		public bool HideLoginClientThumbnail { get; set; }
 		public bool MinimizeInactiveClients { get; set; }
 		public AnimationStyle WindowsAnimationStyle { get; set; }
 		public bool ShowThumbnailsAlwaysOnTop { get; set; }
@@ -224,6 +275,8 @@ namespace EveOPreview.Configuration.Implementation
 		private Dictionary<string, bool> DisableThumbnail { get; set; }
 		[JsonProperty]
 		private List<string> PriorityClients { get; set; }
+		[JsonProperty]
+		private List<string> ExecutablesToPreview { get; set; }
 
 		public Point GetThumbnailLocation(string currentClient, string activeClient, Point defaultLocation)
 		{
@@ -325,6 +378,10 @@ namespace EveOPreview.Configuration.Implementation
 		public bool IsPriorityClient(string currentClient)
 		{
 			return this.PriorityClients.Contains(currentClient);
+		}
+		public bool IsExecutableToPreview(string processName)
+		{
+			return this.ExecutablesToPreview.Any(s => s.Equals(processName, StringComparison.OrdinalIgnoreCase));
 		}
 
 		public bool IsThumbnailDisabled(string currentClient)

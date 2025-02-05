@@ -28,7 +28,7 @@ namespace EveOPreview.View
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(64, 64);
+			this.MinimumSize = new System.Drawing.Size(20, 20);
 			this.Name = "ThumbnailView";
 			this.Opacity = 0.1D;
 			this.ShowIcon = false;

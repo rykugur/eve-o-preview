@@ -81,6 +81,15 @@ namespace EveOPreview.Services
 
 			RegisterCycleClientHotkey(this._configuration.CycleGroup2ForwardHotkeys?.Select(x => this._configuration.StringToKey(x)), true, this._configuration.CycleGroup2ClientsOrder);
 			RegisterCycleClientHotkey(this._configuration.CycleGroup2BackwardHotkeys?.Select(x => this._configuration.StringToKey(x)), false, this._configuration.CycleGroup2ClientsOrder);
+
+			RegisterCycleClientHotkey(this._configuration.CycleGroup3ForwardHotkeys?.Select(x => this._configuration.StringToKey(x)), true, this._configuration.CycleGroup3ClientsOrder);
+			RegisterCycleClientHotkey(this._configuration.CycleGroup3BackwardHotkeys?.Select(x => this._configuration.StringToKey(x)), false, this._configuration.CycleGroup3ClientsOrder);
+
+			RegisterCycleClientHotkey(this._configuration.CycleGroup4ForwardHotkeys?.Select(x => this._configuration.StringToKey(x)), true, this._configuration.CycleGroup4ClientsOrder);
+			RegisterCycleClientHotkey(this._configuration.CycleGroup4BackwardHotkeys?.Select(x => this._configuration.StringToKey(x)), false, this._configuration.CycleGroup4ClientsOrder);
+
+			RegisterCycleClientHotkey(this._configuration.CycleGroup5ForwardHotkeys?.Select(x => this._configuration.StringToKey(x)), true, this._configuration.CycleGroup5ClientsOrder);
+			RegisterCycleClientHotkey(this._configuration.CycleGroup5BackwardHotkeys?.Select(x => this._configuration.StringToKey(x)), false, this._configuration.CycleGroup5ClientsOrder);
 		}
 
 		public IThumbnailView GetClientByTitle(string title)
@@ -126,10 +135,43 @@ namespace EveOPreview.Services
 
 			foreach (var t in clientOrder)
 			{
-				if (t.Key == _activeClient.Title)
+				if (t.Key == _activeClient.Title && t.Key != "EVE")
 				{
 					setNextClient = true;
 					lastClient = _thumbnailViews.FirstOrDefault(x => x.Value.Title == t.Key).Value;
+					continue;
+				}
+
+				// cycle through login screens ?
+				if (t.Key == _activeClient.Title && t.Key == "EVE")
+				{
+					lastClient = _thumbnailViews.FirstOrDefault(x => x.Value.Title == t.Key && x.Value.Id == _activeClient.Handle).Value;
+					if (lastClient == null)
+					{
+						setNextClient = true;
+						continue;
+					}
+					var possibleClients = (isForwards ? _thumbnailViews.OrderBy(x => x.Value.Id.ToInt64()) : _thumbnailViews.OrderByDescending(x => x.Value.Id.ToInt64())).Where(x => x.Value.Title == t.Key);
+					foreach (var pc in possibleClients)
+					{
+						if ( pc.Value.Id.Equals(lastClient.Id) )
+						{
+							setNextClient = true;
+							continue;
+						}
+
+						if (!setNextClient)
+						{
+							continue;
+						}
+
+						// this is the next client (at login screen)
+						SetActive(pc);
+						return;
+					}
+
+					// rolled off top of list - back to first (if any there!)
+					// set next client ?
 					continue;
 				}
 
@@ -140,7 +182,9 @@ namespace EveOPreview.Services
 
 				if (_thumbnailViews.Any(x => x.Value.Title == t.Key))
 				{
-					var ptr = _thumbnailViews.First(x => x.Value.Title == t.Key);
+					var ptr = t.Key.Equals("EVE") ? 
+						(isForwards ? _thumbnailViews.OrderBy(x => x.Value.Id.ToInt64()) : _thumbnailViews.OrderByDescending(x => x.Value.Id.ToInt64())).First(x => x.Value.Title == t.Key)
+						: _thumbnailViews.First(x => x.Value.Title == t.Key);
 					SetActive(ptr);
 					return;
 				}
@@ -151,7 +195,9 @@ namespace EveOPreview.Services
 			{
 				if (_thumbnailViews.Any(x => x.Value.Title == t.Key))
 				{
-					var ptr = _thumbnailViews.First(x => x.Value.Title == t.Key);
+					var ptr = t.Key.Equals("EVE") ?
+						(isForwards ? _thumbnailViews.OrderBy(x => x.Value.Id.ToInt64()) : _thumbnailViews.OrderByDescending(x => x.Value.Id.ToInt64())).First(x => x.Value.Title == t.Key)
+						: _thumbnailViews.First(x => x.Value.Title == t.Key);
 					SetActive(ptr);
 					_activeClient = (ptr.Key, t.Key);
 					return;
@@ -398,6 +444,15 @@ namespace EveOPreview.Services
 				}
 
 				if (this._configuration.HideActiveClientThumbnail && (view.Id == this._activeClient.Handle))
+				{
+					if (view.IsActive)
+					{
+						view.Hide();
+					}
+					continue;
+				}
+
+				if (this._configuration.HideLoginClientThumbnail && (view.Title == DEFAULT_CLIENT_TITLE ))
 				{
 					if (view.IsActive)
 					{

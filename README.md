@@ -148,11 +148,13 @@ Some of the application options are not exposed in the GUI. They can be adjusted
 | **CompatibilityMode** | <div style="font-size: small">Enables the alternative render mode (see below)<br />The default value is **false**<br />For example: **"CompatibilityMode": true**</div> |
 | **EnableThumbnailSnap** | <div style="font-size: small">Allows to disable thumbnails snap feature by setting its value to **false**<br />The default value is **true**<br />For example: **"EnableThumbnailSnap": true**</div> |
 | **HideThumbnailsDelay** | <div style="font-size: small">Delay before thumbnails are hidden if the **General** -> **Hide previews when EVE client is not active** option is enabled<br />The delay is measured in thumbnail refresh periods<br />The default value is **2** (corresponds to 1 second delay)<br />For example: **"HideThumbnailsDelay": 2**</div> |
+| **HideLoginClientThumbnail** | <div style="font-size: small">Hide EVE login window clients. If an Eve online client is sat at character selection screen - hide the preview window for this client<br />The default value is **false**<br />For example: **"HideLoginClientThumbnail": false**</div> |
 | **PriorityClients** | <div style="font-size: small">Allows to set a list of clients that are not auto-minimized on inactivity even if the **Minimize inactive EVE clients** option is enabled. Listed clients still can be minimized using Windows hotkeys or via _Ctrl+Click_ on the corresponding thumbnail<br />The default value is empty list **[]**<br />For example: **"PriorityClients": [ "EVE - Phrynohyas Tig-Rah", "EVE - Ondatra Patrouette" ]**</div> |
 | **ThumbnailMinimumSize** | <div style="font-size: small">Minimum thumbnail size that can be set either via GUI or by resizing a thumbnail window. Value is written in the form "width, height"<br />The default value is **"100, 80"**.<br />For example: **"ThumbnailMinimumSize": "100, 80"**</div> |
 | **ThumbnailMaximumSize** | <div style="font-size: small">Maximum thumbnail size that can be set either via GUI or by resizing a thumbnail window. Value is written in the form "width, height"<br />The default value is **"640, 400"**.<br />For example: **"ThumbnailMaximumSize": "640, 400"**</div> |
 | **ThumbnailRefreshPeriod** | <div style="font-size: small">Thumbnail refresh period in milliseconds. This option accepts values between **300** and **1000** only.<br />The default value is **500** milliseconds.<br />For example: **"ThumbnailRefreshPeriod": 500**</div> |
 | **ThumbnailResizeTimeoutPeriod** | <div style="font-size: small">Thumbnail Resize Timeout period in milliseconds. This option accepts values between **200** and **5000** only.<br />The default value is **500** milliseconds.<br />For example: **"ThumbnailResizeTimeoutPeriod": 500**. If you are having the preview windows resize incorrectly on startup increase this value.</div> |
+| **ExecutablesToPreview** | <div style="font-size: small">List of executables to display preview windows for. List of strings.<br />The default value is **"exefile"**.<br />For example: **"ExecutablesToPreview": ["exefile","wow","Diablo IV"]**. If you are having the preview windows resize incorrectly on startup increase this value.</div> |
 
 <div style="page-break-after: always;"></div>
 
@@ -218,19 +220,29 @@ Next find the entry **CycleGroup1ForwardHotkeys**. Most probably it will look li
 You should modify this entry with a list of each of your clients replacing "Example DPS Toon 1", etc with the name of your character. The numbers on the right are used to force the order in which they cycle.
 If a character appears in the list but is not currently logged in, then it will simply be skipped.
 If a character does not appear in the list, then they will never become active when cycling clients.
+If "EVE" is used instead of a character name - then this is taken to mean active clients with no active character (ie on character selection screen). This would allow you to setup a cycle group to go through clients at character selection screen. EVE-O Preview will cycle through all clients in this state.
 
-By now you may have noticed that there are two groups. The above configuration can be followed for a second group by using the values **CycleGroup2ForwardHotkeys**, **CycleGroup2BackwardHotkeys**, and **CycleGroup2ForwardHotkeys**
-This may provide useful if you want to have one HotKey to cycle through a group of DPS characters, while another HotKey cycles through support roles such as gate scouts, or a group of logi.
+By now you may have noticed that there are multiple groups. The above configuration can be followed for a second group by using the values **CycleGroup2ForwardHotkeys**, **CycleGroup2BackwardHotkeys**, and **CycleGroup2ForwardHotkeys**
+This may provide useful if you want to have one HotKey to cycle through a group of DPS characters, while another HotKey cycles through support roles such as gate scouts, or a group of logi. Cyclegroups are numbered 1 through 5.
 
 Alternatively you may not want to use any of these HotKeys. Please note that deleting the values in their entirety will simply result in them being automatically re-generated.
 Should you wish to remove these HotKeys completely, Simply set the values to empty, such as the example below:
 
-      "CycleGroup1ForwardHotkeys": [],
+    "CycleGroup1ForwardHotkeys": [],
 	  "CycleGroup1BackwardHotkeys": [],
 	  "CycleGroup1ClientsOrder": {},
 	  "CycleGroup2ForwardHotkeys": [],
 	  "CycleGroup2BackwardHotkeys": [],
-	  "CycleGroup2ClientsOrder": {}
+	  "CycleGroup2ClientsOrder": {},
+	  "CycleGroup3ForwardHotkeys": [],
+	  "CycleGroup3BackwardHotkeys": [],
+	  "CycleGroup3ClientsOrder": {},
+	  "CycleGroup4ForwardHotkeys": [],
+	  "CycleGroup4BackwardHotkeys": [],
+	  "CycleGroup4ClientsOrder": {},
+	  "CycleGroup5ForwardHotkeys": [],
+	  "CycleGroup5BackwardHotkeys": [],
+	  "CycleGroup5ClientsOrder": {}
 
 **Hints** 
 * Minimise the use of modifiers or standard keys to minimise issues with the client playing up. In the default example unusual Function keys (e.g. F14) are used which are then bound to a game pad or gaming mouse.

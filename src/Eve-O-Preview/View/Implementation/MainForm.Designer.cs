@@ -39,6 +39,7 @@ namespace EveOPreview.View
 			System.Windows.Forms.TabControl ContentTabControl;
 			System.Windows.Forms.TabPage GeneralTabPage;
 			System.Windows.Forms.Panel GeneralSettingsPanel;
+			System.Windows.Forms.Label label4;
 			System.Windows.Forms.TabPage ThumbnailTabPage;
 			System.Windows.Forms.Panel ThumbnailSettingsPanel;
 			System.Windows.Forms.Label HeigthLabel;
@@ -59,7 +60,6 @@ namespace EveOPreview.View
 			System.Windows.Forms.Label DescriptionLabel;
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			System.Windows.Forms.Label NameLabel;
-			System.Windows.Forms.Label label4;
 			this.AnimationStyleCombo = new System.Windows.Forms.ComboBox();
 			this.MinimizeInactiveClientsCheckBox = new System.Windows.Forms.CheckBox();
 			this.EnableClientLayoutTrackingCheckBox = new System.Windows.Forms.CheckBox();
@@ -122,6 +122,7 @@ namespace EveOPreview.View
 			ContentTabControl = new System.Windows.Forms.TabControl();
 			GeneralTabPage = new System.Windows.Forms.TabPage();
 			GeneralSettingsPanel = new System.Windows.Forms.Panel();
+			label4 = new System.Windows.Forms.Label();
 			ThumbnailTabPage = new System.Windows.Forms.TabPage();
 			ThumbnailSettingsPanel = new System.Windows.Forms.Panel();
 			HeigthLabel = new System.Windows.Forms.Label();
@@ -141,7 +142,6 @@ namespace EveOPreview.View
 			DocumentationLinkLabel = new System.Windows.Forms.Label();
 			DescriptionLabel = new System.Windows.Forms.Label();
 			NameLabel = new System.Windows.Forms.Label();
-			label4 = new System.Windows.Forms.Label();
 			ContentTabControl.SuspendLayout();
 			GeneralTabPage.SuspendLayout();
 			GeneralSettingsPanel.SuspendLayout();
@@ -243,6 +243,15 @@ namespace EveOPreview.View
 			GeneralSettingsPanel.Size = new System.Drawing.Size(256, 204);
 			GeneralSettingsPanel.TabIndex = 18;
 			GeneralSettingsPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.GeneralSettingsPanel_Paint);
+			// 
+			// label4
+			// 
+			label4.AutoSize = true;
+			label4.Location = new System.Drawing.Point(5, 100);
+			label4.Name = "label4";
+			label4.Size = new System.Drawing.Size(79, 13);
+			label4.TabIndex = 27;
+			label4.Text = "Animation Style";
 			// 
 			// AnimationStyleCombo
 			// 
@@ -407,6 +416,7 @@ namespace EveOPreview.View
             0,
             0,
             0});
+			this.ThumbnailSnapToGridSizeYNumericEdit.ValueChanged += new System.EventHandler(this.OptionChanged_Handler);
 			// 
 			// SnapYLabel
 			// 
@@ -1172,15 +1182,6 @@ namespace EveOPreview.View
             ExitMenuItem});
 			this.TrayMenu.Name = "contextMenuStrip1";
 			this.TrayMenu.Size = new System.Drawing.Size(152, 76);
-			// 
-			// label4
-			// 
-			label4.AutoSize = true;
-			label4.Location = new System.Drawing.Point(5, 100);
-			label4.Name = "label4";
-			label4.Size = new System.Drawing.Size(79, 13);
-			label4.TabIndex = 27;
-			label4.Text = "Animation Style";
 			// 
 			// MainForm
 			// 

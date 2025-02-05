@@ -443,6 +443,15 @@ namespace EveOPreview.Services
 					continue;
 				}
 
+				if (this._configuration.HideLoginClientThumbnail && (view.Title == DEFAULT_CLIENT_TITLE ))
+				{
+					if (view.IsActive)
+					{
+						view.Hide();
+					}
+					continue;
+				}
+
 				// No need to update Thumbnails while one of them is highlighted
 				if (!this._isHoverEffectActive)
 				{

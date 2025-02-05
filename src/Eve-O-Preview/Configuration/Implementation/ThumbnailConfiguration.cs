@@ -73,6 +73,7 @@ namespace EveOPreview.Configuration.Implementation
 
 			this.EnableClientLayoutTracking = false;
 			this.HideActiveClientThumbnail = false;
+			this.HideLoginClientThumbnail = false;
 			this.MinimizeInactiveClients = false;
 			this.WindowsAnimationStyle = AnimationStyle.NoAnimation;
 			this.ShowThumbnailsAlwaysOnTop = true;
@@ -165,6 +166,7 @@ namespace EveOPreview.Configuration.Implementation
 		}
 
 		public bool HideActiveClientThumbnail { get; set; }
+		public bool HideLoginClientThumbnail { get; set; }
 		public bool MinimizeInactiveClients { get; set; }
 		public AnimationStyle WindowsAnimationStyle { get; set; }
 		public bool ShowThumbnailsAlwaysOnTop { get; set; }

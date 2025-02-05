@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EveOPreview.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -14,12 +15,14 @@ namespace EveOPreview.Services.Implementation
 		#region Private fields
 		private readonly IDictionary<IntPtr, string> _processCache;
 		private IProcessInfo _currentProcessInfo;
+		private readonly IThumbnailConfiguration _configuration;
 		#endregion
 
-		public ProcessMonitor()
+		public ProcessMonitor(IThumbnailConfiguration configuration)
 		{
 			this._processCache = new Dictionary<IntPtr, string>(512);
-			
+			this._configuration = configuration;
+
 			// This field cannot be initialized properly in constructor
 			// At the moment this code is executed the main application window is not yet initialized
 			this._currentProcessInfo = new ProcessInfo(IntPtr.Zero, "");
@@ -28,7 +31,7 @@ namespace EveOPreview.Services.Implementation
 		private bool IsMonitoredProcess(string processName)
 		{
 			// This is a possible extension point
-			return String.Equals(processName, ProcessMonitor.DEFAULT_PROCESS_NAME, StringComparison.OrdinalIgnoreCase);
+			return _configuration.IsExecutableToPreview(processName);
 		}
 
 		private IProcessInfo GetCurrentProcessInfo()

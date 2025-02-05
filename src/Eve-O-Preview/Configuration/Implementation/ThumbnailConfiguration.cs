@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -59,6 +60,8 @@ namespace EveOPreview.Configuration.Implementation
 			this.ClientHotkey = new Dictionary<string, string>();
 			this.DisableThumbnail = new Dictionary<string, bool>();
 			this.PriorityClients = new List<string>();
+
+			this.ExecutablesToPreview = new List<string> { "exefile" };
 
 			this.MinimizeToTray = false;
 			this.ThumbnailRefreshPeriod = 500;
@@ -224,6 +227,8 @@ namespace EveOPreview.Configuration.Implementation
 		private Dictionary<string, bool> DisableThumbnail { get; set; }
 		[JsonProperty]
 		private List<string> PriorityClients { get; set; }
+		[JsonProperty]
+		private List<string> ExecutablesToPreview { get; set; }
 
 		public Point GetThumbnailLocation(string currentClient, string activeClient, Point defaultLocation)
 		{
@@ -325,6 +330,10 @@ namespace EveOPreview.Configuration.Implementation
 		public bool IsPriorityClient(string currentClient)
 		{
 			return this.PriorityClients.Contains(currentClient);
+		}
+		public bool IsExecutableToPreview(string processName)
+		{
+			return this.ExecutablesToPreview.Any(s => s.Equals(processName, StringComparison.OrdinalIgnoreCase));
 		}
 
 		public bool IsThumbnailDisabled(string currentClient)

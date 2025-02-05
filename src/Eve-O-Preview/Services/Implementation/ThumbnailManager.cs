@@ -126,10 +126,43 @@ namespace EveOPreview.Services
 
 			foreach (var t in clientOrder)
 			{
-				if (t.Key == _activeClient.Title)
+				if (t.Key == _activeClient.Title && t.Key != "EVE")
 				{
 					setNextClient = true;
 					lastClient = _thumbnailViews.FirstOrDefault(x => x.Value.Title == t.Key).Value;
+					continue;
+				}
+
+				// cycle through login screens ?
+				if (t.Key == _activeClient.Title && t.Key == "EVE")
+				{
+					lastClient = _thumbnailViews.FirstOrDefault(x => x.Value.Title == t.Key && x.Value.Id == _activeClient.Handle).Value;
+					if (lastClient == null)
+					{
+						setNextClient = true;
+						continue;
+					}
+					var possibleClients = (isForwards ? _thumbnailViews.OrderBy(x => x.Value.Id.ToInt64()) : _thumbnailViews.OrderByDescending(x => x.Value.Id.ToInt64())).Where(x => x.Value.Title == t.Key);
+					foreach (var pc in possibleClients)
+					{
+						if ( pc.Value.Id.Equals(lastClient.Id) )
+						{
+							setNextClient = true;
+							continue;
+						}
+
+						if (!setNextClient)
+						{
+							continue;
+						}
+
+						// this is the next client (at login screen)
+						SetActive(pc);
+						return;
+					}
+
+					// rolled off top of list - back to first (if any there!)
+					// set next client ?
 					continue;
 				}
 
@@ -140,7 +173,9 @@ namespace EveOPreview.Services
 
 				if (_thumbnailViews.Any(x => x.Value.Title == t.Key))
 				{
-					var ptr = _thumbnailViews.First(x => x.Value.Title == t.Key);
+					var ptr = t.Key.Equals("EVE") ? 
+						(isForwards ? _thumbnailViews.OrderBy(x => x.Value.Id.ToInt64()) : _thumbnailViews.OrderByDescending(x => x.Value.Id.ToInt64())).First(x => x.Value.Title == t.Key)
+						: _thumbnailViews.First(x => x.Value.Title == t.Key);
 					SetActive(ptr);
 					return;
 				}
@@ -151,7 +186,9 @@ namespace EveOPreview.Services
 			{
 				if (_thumbnailViews.Any(x => x.Value.Title == t.Key))
 				{
-					var ptr = _thumbnailViews.First(x => x.Value.Title == t.Key);
+					var ptr = t.Key.Equals("EVE") ?
+						(isForwards ? _thumbnailViews.OrderBy(x => x.Value.Id.ToInt64()) : _thumbnailViews.OrderByDescending(x => x.Value.Id.ToInt64())).First(x => x.Value.Title == t.Key)
+						: _thumbnailViews.First(x => x.Value.Title == t.Key);
 					SetActive(ptr);
 					_activeClient = (ptr.Key, t.Key);
 					return;

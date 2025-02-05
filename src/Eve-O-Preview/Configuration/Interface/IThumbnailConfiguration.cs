@@ -73,6 +73,7 @@ namespace EveOPreview.Configuration
 		Keys StringToKey(string hotkey);
 
 		bool IsPriorityClient(string currentClient);
+		bool IsExecutableToPreview(string processName);
 
 		bool IsThumbnailDisabled(string currentClient);
 		void ToggleThumbnail(string currentClient, bool isDisabled);

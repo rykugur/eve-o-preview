@@ -313,6 +313,15 @@ This setting allows to enable an alternate thumbnail render. This render doesn't
 * `-`  Thumbnail images are refreshed at 1 FPS rate
 * `-`  Possible short mouse cursor freezes
 
+### Release build
+
+Release builds are generated using github actions when a release is created from tag. If you wish to build locally the variable EVEOTARGET controls Linux or Windows source inclusion.
+
+You can build using : 
+
+* dotnet build src\\Eve-O-Preview\\Eve-O-Preview.csproj --configuration Release --no-restore  -p:EVEOTARGET="Linux" -p:AssemblyVersion="8.0.2.0"
+* dotnet build src\\Eve-O-Preview\\Eve-O-Preview.csproj --configuration Release --no-restore  -p:EVEOTARGET="Windows" -p:AssemblyVersion="8.0.2.0"
+
 <div style="page-break-after: always;"></div>
 
 ## Credits

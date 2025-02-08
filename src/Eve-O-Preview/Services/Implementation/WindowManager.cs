@@ -105,7 +105,6 @@ namespace EveOPreview.Services.Implementation
             {
                 cmd = "-c \"wmctrl -a \"\"" + windowName + "\"\"\"";
             }
-
 			System.Diagnostics.Process.Start("/bin/bash", cmd);
 		}
 

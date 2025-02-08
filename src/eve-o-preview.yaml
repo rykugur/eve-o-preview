@@ -58,7 +58,7 @@ script:
           "$winetricks" -q msdelta vkd3d vcrun2022 dxvk2030
           # Need to install dotnet8 with the actual installer because winetricks version is not working
           "$GAMEDIR"/runner-wine/bin/wine "$dotnet8"
-          "$GAMEDIR/runner-wine/bin/wine" "EVE-O Preview.exe"
+          "$GAMEDIR/runner-wine/bin/wine" "EVE-O-Preview.exe"
           "$GAMEDIR"/runner-wine/bin/wine "./installer.exe"
 
           # cleanup

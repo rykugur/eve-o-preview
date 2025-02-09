@@ -319,8 +319,8 @@ Release builds are generated using github actions when a release is created from
 
 You can build using : 
 
-* dotnet build src\\Eve-O-Preview\\Eve-O-Preview.csproj --configuration Release --no-restore  -p:EVEOTARGET="Linux" -p:AssemblyVersion="8.0.2.0"
-* dotnet build src\\Eve-O-Preview\\Eve-O-Preview.csproj --configuration Release --no-restore  -p:EVEOTARGET="Windows" -p:AssemblyVersion="8.0.2.0"
+* dotnet build src\\Eve-O-Preview\\Eve-O-Preview.csproj --configuration Release -p:EVEOTARGET="Linux" -p:AssemblyVersion="8.0.2.0"
+* dotnet build src\\Eve-O-Preview\\Eve-O-Preview.csproj --configuration Release   -p:EVEOTARGET="Windows" -p:AssemblyVersion="8.0.2.0"
 
 <div style="page-break-after: always;"></div>
 

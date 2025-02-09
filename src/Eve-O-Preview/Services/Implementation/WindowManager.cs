@@ -39,7 +39,7 @@ namespace EveOPreview.Services.Implementation
 #if LINUX
 		private string FindLinuxBinLocation(string command)
 		{
-			// Check common paths for bash
+			// Check common paths for command
 			string[] paths = { "/run/host/usr/bin", "/bin", "/usr/bin" };
 			foreach (var path in paths)
 			{

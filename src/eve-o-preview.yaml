@@ -37,7 +37,7 @@ script:
           cd "$GAMEDIR"
 
           # Start EVE-O in the background
-          "./runner-wine/bin/wine" "./EVE-O Preview.exe" &
+          "./runner-wine/bin/wine" "./EVE-O-Preview.exe" &
           # We start the launcher by calling the installer again because, otherwise, there is a Javascript exception when calling the actual executable. No idea why.
           "./runner-wine/bin/wine" "./installer.exe"
     - chmodx: $GAMEDIR/launch.sh
@@ -55,7 +55,7 @@ script:
           export WINEPREFIX="$GAMEDIR"
 
           # Begin installation
-          "$winetricks" -q msdelta vkd3d vcrun2022 dxvk2030
+          "$winetricks" -q msdelta vkd3d vcrun2022 dxvk2030 dotnet45
           # Need to install dotnet8 with the actual installer because winetricks version is not working
           "$GAMEDIR"/runner-wine/bin/wine "$dotnet8"
           "$GAMEDIR/runner-wine/bin/wine" "EVE-O-Preview.exe"

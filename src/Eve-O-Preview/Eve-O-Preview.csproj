@@ -34,7 +34,9 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>..\..\bin</OutputPath>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
+	  <DebugSymbols>False</DebugSymbols>
+	  <DebugType>None</DebugType>
+	  <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>

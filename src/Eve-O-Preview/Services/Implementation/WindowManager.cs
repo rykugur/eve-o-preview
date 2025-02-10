@@ -16,6 +16,9 @@ namespace EveOPreview.Services.Implementation
 
 		#region Private fields
 		private readonly bool _enableWineCompatabilityMode;
+		private string _bashLocation;
+		private string _wmctrlLocation;
+		private const string EXCEPTION_DUMP_FILE_NAME = "EVE-O-Preview.log";
 		#endregion
 
 
@@ -23,6 +26,8 @@ namespace EveOPreview.Services.Implementation
 		{
 #if LINUX
 			this._enableWineCompatabilityMode = configuration.EnableWineCompatibilityMode;
+			this._bashLocation = FindLinuxBinLocation("bash");
+			this._wmctrlLocation = FindLinuxBinLocation("wmctrl");
 #endif
 			// Composition is always enabled for Windows 8+
 			this.IsCompositionEnabled = 
@@ -30,6 +35,39 @@ namespace EveOPreview.Services.Implementation
 				|| (Environment.OSVersion.Version.Major >= 10) // Win 10
 				|| DwmNativeMethods.DwmIsCompositionEnabled(); // In case of Win 7 an API call is requiredWin 7
 			_animationParam.cbSize = (System.UInt32)Marshal.SizeOf(typeof(ANIMATIONINFO));
+		}
+#if LINUX
+		private string FindLinuxBinLocation(string command)
+		{
+			// Check common paths for command
+			string[] paths = { "/run/host/usr/bin", "/bin", "/usr/bin" };
+			foreach (var path in paths)
+			{
+			    string locationToCheck = $"{path}/{command}";
+				if (System.IO.File.Exists(locationToCheck))
+				{
+					string binLocation = System.IO.Path.GetDirectoryName(locationToCheck);
+					string binLocationUnixStyle = binLocation.Replace("\\", "/");
+
+					return binLocationUnixStyle;
+				}
+			}
+
+			WriteToLog($"[{DateTime.Now}] Error: {command} not found in expected locations.");
+			return null;
+		}
+#endif
+
+		private void WriteToLog(string message)
+		{
+			try
+			{
+				System.IO.File.AppendAllText(EXCEPTION_DUMP_FILE_NAME, message + Environment.NewLine);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Failed to write to log file: {ex.Message}");
+			}
 		}
 
 		private int? _currentAnimationSetting = null;
@@ -95,17 +133,37 @@ namespace EveOPreview.Services.Implementation
 				return;
 			}
 
-            string? cmd = null;
-            // If we are in a flatpak, then use flatpak-spawn to run wmctrl outside the sandbox
-            if (Environment.GetEnvironmentVariable("container") == "flatpak")
-            {
-                cmd = "-c \"flatpak-spawn --host wmctrl -a \"\"" + windowName + "\"\"\"";
-            } 
-            else 
-            {
-                cmd = "-c \"wmctrl -a \"\"" + windowName + "\"\"\"";
-            }
-			System.Diagnostics.Process.Start("bash", cmd);
+            string cmd = "";
+			try
+			{
+                // If we are in a flatpak, then use flatpak-spawn to run wmctrl outside the sandbox
+                if (Environment.GetEnvironmentVariable("container") == "flatpak")
+                {
+                    cmd = $"-c \"flatpak-spawn --host {this._wmctrlLocation}/wmctrl -a \"\"" + windowName + "\"\"\"";
+                } 
+                else 
+                {
+                    cmd = $"-c \"{this._wmctrlLocation}/wmctrl -a \"\"" + windowName + "\"\"\"";
+                }
+
+				// Configure and start the process
+				var processStartInfo = new System.Diagnostics.ProcessStartInfo
+				{
+					FileName = $"{this._bashLocation}/bash",
+					Arguments = cmd,
+					UseShellExecute = false,
+					CreateNoWindow = false
+				};
+
+				using (var process = System.Diagnostics.Process.Start(processStartInfo))
+				{
+					process.WaitForExit();
+				}
+			}
+			catch (Exception ex)
+			{
+				WriteToLog($"[{DateTime.Now}] executing wmctrl - Exception: {ex.Message}");
+			}
 		}
 
         public void ActivateWindow(IntPtr handle, string windowName)

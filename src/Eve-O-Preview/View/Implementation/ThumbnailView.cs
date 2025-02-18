@@ -423,7 +423,8 @@ namespace EveOPreview.View
 				return;
 			}
 
-			this._overlay.EnableOverlayLabel(this.IsOverlayEnabled);
+			// Only show overlay if enabled AND thumbnail is active/visible.
+			this._overlay.EnableOverlayLabel(this.IsOverlayEnabled && this.Visible);
 
 			if (!this._isOverlayVisible)
 			{

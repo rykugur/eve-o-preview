@@ -1,0 +1,53 @@
+description: Install the EVE Online Launcher
+game_slug: eve-online
+gogslug: ''
+humblestoreid: ''
+name: EVE Online
+notes: Eve Online Installer Script by EVE-O
+runner: wine
+script:
+  files:
+  - setup:
+      filename: eve-online-latest+Setup.exe
+      url: https://launcher.ccpgames.com/eve-online/release/win32/x64/eve-online-latest+Setup.exe
+  - installer-wine: https://github.com/Kron4ek/Wine-Builds/releases/download/10.0/wine-10.0-staging-amd64.tar.xz
+  game:
+    exe: $GAMEDIR/drive_c/users/$USER/AppData/Local/eve-online/eve-online.exe
+    prefix: $GAMEDIR
+  installer:
+    - task:
+        arch: win64
+        description: Creating 64bit Wine prefix.
+        name: create_prefix
+        prefix: $GAMEDIR
+    - task:
+        app: msdelta
+        name: winetricks
+        prefix: $GAMEDIR
+    - task:
+        app: arial
+        name: winetricks
+        prefix: $GAMEDIR
+    - task:
+        app: tahoma
+        name: winetricks
+        prefix: $GAMEDIR
+    - task:
+        app: vcrun2022
+        name: winetricks
+        prefix: $GAMEDIR
+    - extract:
+        file: installer-wine
+        dst: $GAMEDIR/installer-wine
+    - execute:
+        description: Finish the installation of eve before closing. Don't add your accounts yet. Switch to ge-proton after closing the game and then add your accounts.
+        command: | 
+          WINEPREFIX="$GAMEDIR" "$GAMEDIR"/installer-wine/bin/wine "$setup"
+          rm -rf "$GAMEDIR/installer-wine"
+  wine: #Disable due to high CPU usage causing crashes when enabled
+    esync: false
+    fsync: false
+slug: eve-online-dec-2023-launcher
+steamid: 8500
+version: Dec 2023 Launcher
+year: 2003

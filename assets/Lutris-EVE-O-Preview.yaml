@@ -1,0 +1,32 @@
+description: Install EVE-O Preview by EVE-O
+game_slug: eve-online
+gogslug: ''
+humblestoreid: ''
+installer_slug: eve-online-dec-2023-launcher
+name: EVE-O Preview
+notes: EVE-O Preview
+runner: wine
+script:
+  files:
+  - eve-o-preview: https://github.com/Proopai/eve-o-preview/releases/download/8.0.2.0/Release-8.0.2.0-Linux.zip
+  game:
+    exe: $GAMEDIR/EVE-O-Preview.exe
+    prefix: $GAMEDIR
+  installer:
+    - task:
+        arch: win64
+        description: Creating 64bit Wine prefix.
+        name: create_prefix
+        prefix: $GAMEDIR
+    - extract:
+        file: eve-o-preview
+        dst: $GAMEDIR
+    - execute:
+        command: mkdir -p $GAMEDIR/home/$USER/.cache/dotnet_bundle_extract
+  wine:
+    esync: false
+    fsync: false
+slug: eve-online-dec-2023-launcher
+steamid: 8500
+version: 8.0.2.0
+year: 2003

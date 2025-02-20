@@ -151,7 +151,7 @@ namespace EveOPreview.Services.Implementation
 				{
 					FileName = $"{this._bashLocation}/bash",
 					Arguments = cmd,
-					UseShellExecute = false,
+					UseShellExecute = true,
 					CreateNoWindow = false
 				};
 

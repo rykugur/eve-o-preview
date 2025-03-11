@@ -42,7 +42,7 @@ namespace EveOPreview.Services.Implementation
 		{
 			// Check common paths for command
 	        List<string> paths = new List<string> { "/run/host/usr/bin", "/bin", "/usr/bin" };
-	        string searchPaths = Environment.GetEnvironmentVariable("WMCTRL_PATH");
+	        string searchPaths = Environment.GetEnvironmentVariable("PATH");
 			if (searchPaths != null) {
 				paths.AddRange(searchPaths.Split(":"));
 			}

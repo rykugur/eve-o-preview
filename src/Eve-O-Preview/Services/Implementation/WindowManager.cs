@@ -43,7 +43,7 @@ namespace EveOPreview.Services.Implementation
 	        List<string> paths = new List<string> { "/run/host/usr/bin", "/bin", "/usr/bin" };
 	        string searchPaths = Environment.GetEnvironmentVariable("WMCTRL_PATH");
 			if (searchPaths != null) {
-				paths.AddRange(searchPaths.split(":"));
+				paths.AddRange(searchPaths.Split(":"));
 			}
 			
 			foreach (var path in paths)

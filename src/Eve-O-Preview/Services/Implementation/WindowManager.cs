@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using EveOPreview.Configuration;
 using EveOPreview.Services.Interop;
+using System.Collections.Generic;
 
 namespace EveOPreview.Services.Implementation
 {
